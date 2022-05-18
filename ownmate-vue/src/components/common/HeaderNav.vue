@@ -1,26 +1,41 @@
 <template>
   <header>
-      <nav class="header-nav">
-          <div>
-              <router-link to="#">홈</router-link>
-          </div>
-          <div>
-              <router-link to="#">탐색</router-link> <br>
-              <router-link to="#">팔로우 목록</router-link> <br>
-              <router-link to="#">찜한 영상</router-link> <br>
-          </div>
-      </nav>
+    <b-navbar toggleable type="dark" variant="dark">
+      <b-navbar-brand href="#">OwnMate</b-navbar-brand>
+      <b-nav-form>
+        <b-form-input
+          size="sm"
+          class="mr-sm-2"
+          placeholder="Search"
+        ></b-form-input>
+        <b-button size="sm" class="my-2 my-sm-0" type="submit">Search</b-button>
+      </b-nav-form>
+       <b-button size="sm" class="my-2 my-sm-0" href="#" id="loginbtn">
+           <b-icon icon="person" variant="dark"></b-icon> login
+           </b-button>
+      <b-navbar-toggle target="navbar-toggle-collapse">
+        <template #default="{ expanded }">
+          <b-icon v-if="expanded" icon="chevron-bar-up"></b-icon>
+          <b-icon v-else icon="chevron-bar-down"></b-icon>
+        </template>
+      </b-navbar-toggle>
+
+      <b-collapse id="navbar-toggle-collapse" is-nav>
+        <b-navbar-nav class="ml-auto">
+          <b-nav-item href="#">홈</b-nav-item>
+          <b-nav-item href="#">탐색</b-nav-item>
+          <b-nav-item href="#">팔로우 목록</b-nav-item>
+          <b-nav-item href="#">찜한 영상</b-nav-item>
+        </b-navbar-nav>
+      </b-collapse>
+    </b-navbar>
   </header>
 </template>
 
 <script>
-export default {
-
-}
+export default {};
 </script>
 
 <style>
-    .header-nav{
-        
-    }
+
 </style>
