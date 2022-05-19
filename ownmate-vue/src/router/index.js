@@ -12,6 +12,9 @@ import UserLogin from "@/components/user/UserLogin";
 import UserJoin from "@/components/user/UserJoin";
 import UserMyPage from "@/components/user/UserMyPage";
 
+import FollowList from "@/components/follower/FollowList"
+
+
 Vue.use(VueRouter);
 
 const routes = [
@@ -61,7 +64,11 @@ const routes = [
     name: "userMyPage",
     component: UserMyPage,
   },
-
+  {
+    path: "follow",
+    name: "folloList",
+    component: FollowList
+  },
 ];
 
 const router = new VueRouter({
