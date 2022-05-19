@@ -5,16 +5,17 @@ import router from '@/router'
 
 Vue.use(Vuex)
 
-const REST_API = `http://localhost:9999`
+const REST_API = `http://localhost:9999/api`
 
 export default new Vuex.Store({
   state: {
-    reviews: [],
-    review: {},
     videos:[],
     video:{},
+    reviews: [],
+    review: {},
   },
   getters: {
+
   },
   mutations: {
     GET_REVIEWS(state, payload) {
@@ -48,7 +49,7 @@ export default new Vuex.Store({
       axios({
         url: API_URL,
         method: 'GET',
-        params
+        params,
       }).then((res) => {
         console.log(res)
         commit('GET_REVIEWS', res.data)
@@ -57,8 +58,8 @@ export default new Vuex.Store({
         console.log(err)
       })
     },
-    getReview({ commit }, id) {
-      const API_URL = `${REST_API}/review/${id}`
+    getReview({ commit }, reviewNo) {
+      const API_URL = `${REST_API}/review/${reviewNo}`
       axios({
         url: API_URL,
         method: 'GET',
@@ -94,9 +95,9 @@ export default new Vuex.Store({
         console.log(err)
       })
     },
-    deleteReview(context, id) {
+    deleteReview(context, reviewNo) {
       context //이거 안하면 난리남... 
-      const API_URL = `${REST_API}/review/${id}`
+      const API_URL = `${REST_API}/review/${reviewNo}`
       axios({
         url: API_URL,
         method: 'DELETE',
@@ -111,7 +112,7 @@ export default new Vuex.Store({
       if(payload){
         params = payload
       }
-      const API_URL = `${REST_API}/home`
+      const API_URL = `${REST_API}/video`
       axios({
         url:API_URL,
         method:'GET',
@@ -119,6 +120,7 @@ export default new Vuex.Store({
       }).then((res) => {
         console.log(res)
         commit('GET_VIDEOS', res.data)
+       console.log(this.videos)
       }).catch((err) => {
         console.log(err)
       })

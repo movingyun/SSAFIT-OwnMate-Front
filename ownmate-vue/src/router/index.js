@@ -2,6 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import HomeView from "@/views/HomeView.vue";
 import ReviewView from "@/views/ReviewView.vue";
+import VideoView from "@/views/VideoView.vue";
 
 import ReviewList from "@/components/review/ReviewList";
 import ReviewCreate from "@/components/review/ReviewCreate";
@@ -13,6 +14,7 @@ import UserJoin from "@/components/user/UserJoin";
 import UserMyPage from "@/components/user/UserMyPage";
 
 import FollowList from "@/components/follower/FollowList"
+
 
 
 Vue.use(VueRouter);
@@ -50,22 +52,27 @@ const routes = [
     ],
   },
   {
-    path: "user",
+    path:"/video",
+    name:"videoview",
+    component:VideoView
+  },
+  {
+    path: "/user",
     name: "userLogin",
     component: UserLogin,
   },
   {
-    path: "join",
+    path: "/join",
     name: "userJoin",
     component: UserJoin,
   },
   {
-    path: "mypage",
+    path: "/mypage",
     name: "userMyPage",
     component: UserMyPage,
   },
   {
-    path: "follow",
+    path: "/follow",
     name: "folloList",
     component: FollowList
   },

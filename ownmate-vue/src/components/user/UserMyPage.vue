@@ -20,7 +20,7 @@
           label-cols-sm="2"
           label-align-sm="right"
         >
-          <b-form-input type="text"></b-form-input>
+          <b-form-input type="text" value="user.userID" readonly></b-form-input>
         </b-form-group>
         <b-form-group
           label="패스워드:"

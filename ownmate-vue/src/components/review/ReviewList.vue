@@ -85,7 +85,7 @@ export default {
         mode: this.mode,
         keyword: this.keyword
       }
-      this.$store.dispatch("getBoards", payload)
+      this.$store.dispatch("getReviews", payload)
     }
   }
 };
