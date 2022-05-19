@@ -1,12 +1,12 @@
 <template>
   <div>
-    <h2>환영합니다</h2>
-    <div class="d-flex justify-content-center flex-wrap">
+    <img src="@/assets/cover.png" width="100%" />
+    <div class="d-flex justify-content-around flex-wrap">
       <div v-for="video in videos" :key="video.videoId">
         <div class="iframestyle" style="margin: 1%">
-          <iframe width="550" height="300" :src="video.videoUrl" :key="video.videoUrl"> </iframe>
+          <iframe width="550" height="300" :src='`https://www.youtube.com/embed/${video.videoId}`'></iframe>
           <div class="videotitle">
-            {{video.videoTitle}}
+            <b-link :to="`/video/${video.videoId}`">{{video.videoTitle}}</b-link>
           </div>
         </div>
       </div>
@@ -31,3 +31,9 @@
     
   }
 </script>
+
+<style scoped>
+.text-align-center{
+  text-align: center;
+}
+</style>

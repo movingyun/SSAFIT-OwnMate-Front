@@ -58,8 +58,8 @@ export default new Vuex.Store({
         console.log(err)
       })
     },
-    getReview({ commit }, reviewNo) {
-      const API_URL = `${REST_API}/review/${reviewNo}`
+    getReview({ commit }, reviewVideoId) {
+      const API_URL = `${REST_API}/review?reviewVideoId=${reviewVideoId}`
       axios({
         url: API_URL,
         method: 'GET',
