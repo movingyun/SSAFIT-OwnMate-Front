@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container text-align-center">
     <div class="iframestyle" style="margin: 1%">
       <iframe
         width="1000"
@@ -32,4 +32,9 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.text-align-center{
+  text-align: center;
+}
+</style>
+

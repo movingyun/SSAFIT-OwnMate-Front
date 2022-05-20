@@ -23,7 +23,6 @@ export default new Vuex.Store({
       state.reviews = payload
     },
     GET_REVIEW(state, payload) {
-      console.log("여기왔다")
       state.review = payload 
     },
     CREATE_REVIEW(state, payload) {
@@ -95,7 +94,7 @@ export default new Vuex.Store({
       })
     },
     deleteReview(context, review) {
-      context //이거 안하면 난리남... 
+      context
       const API_URL = `${REST_API}/review/${review.reviewNo}`
       axios({
         url: API_URL,

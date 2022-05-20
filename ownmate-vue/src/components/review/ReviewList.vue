@@ -2,7 +2,9 @@
   <div>
     <!-- 비디오 목록에서 비디오를 누르고 들어가면 리뷰목록으로 들어가게한다..? -->
     <!-- 리뷰 목록들을 관리할 게시판을 따로만든다? -->
+    <div class="text-align-left">
     <h2>리뷰</h2>
+    </div>
     <hr />
     <b-table-simple hover responsive class="text-center">
       <b-thead>
@@ -30,15 +32,15 @@
         </b-tr>
       </b-tbody>
     </b-table-simple>
-    <b-button variant="outline-primary" :to="`/review/create`">등록</b-button>
-    <div class="text-align-center">
-      <select v-model="mode">
-        <option value="1">제목</option>
-        <option value="2">내용</option>
-        <option value="3">제목+내용</option>
-      </select>
-      <input type="text" v-model="keyword" />
-      <button @click="search">검색</button>
+    <div class="text-align-right">
+    <b-button variant="outline-primary" :to="`/review/create`" class="text-align-right">등록</b-button>
+    </div>
+    <br>
+    <div class="d-flex input-group mb-3 justify-content-center">
+       <span id="inputGroup-sizing-sm" class="margin3 text-align-center"><b-form-select v-model="mode" :options="options">
+       </b-form-select></span>
+       <span class="margin3 text-align-center"><b-form-input type="text" v-model="keyword" @keyup.enter="search"></b-form-input></span>
+      <span class="margin3 text-align-center"><button class="btn btn-outline-secondary" @click="search">검색</button></span>
     </div>
     <b-pagination
       v-model="currentPage"
@@ -65,6 +67,13 @@ export default {
       currentPage: 1,
       perPage: 10,
       reviewVideoId : this.videoId,
+      selected:null,
+      options:[
+        {value:null, text:'선택해주세요'},
+        {value:'1', text:'제목'},
+        {value:'2', text:'내용'},
+        {value:'3', text:'제목+내용'},
+      ]
     }
   },
   computed:{
@@ -99,5 +108,15 @@ export default {
 <style scoped>
 .text-align-center {
   text-align: center;
+}
+.text-align-right{
+  text-align: right;
+}
+.text-align-left{
+  text-align: left;
+  margin-left: 50px;
+}
+.margin3{
+  margin: 3px;
 }
 </style>
