@@ -3,7 +3,6 @@
     <!-- 비디오 목록에서 비디오를 누르고 들어가면 리뷰목록으로 들어가게한다..? -->
     <!-- 리뷰 목록들을 관리할 게시판을 따로만든다? -->
     <h2>리뷰</h2>
-    {{ videoId }}
     <hr />
     <b-table-simple hover responsive class="text-center">
       <b-thead>
@@ -16,7 +15,7 @@
         </b-tr>
       </b-thead>
       <b-tbody>
-        <b-tr v-for="review in reviews" :key="review.reviewNo">
+        <b-tr v-for="review in pageReviewList" :key="review.reviewNo">
           <b-td>{{ review.reviewNo }}</b-td>
           <b-td>{{ review.reviewWriter }}</b-td>
           <b-td>
@@ -81,12 +80,13 @@ export default {
     }
   },
   created() {
-    this.$store.dispatch('getReviews',this.reviewVideoId)
+    this.$store.dispatch('getReviews',{mode : 0, reviewVideoId: this.reviewVideoId})
     console.log(this.reviewVideoId)
   },
   methods: {
-        search(){
+      search(){
       const payload = {
+        reviewVideoId : this.reviewVideoId,
         mode: this.mode,
         keyword: this.keyword
       }

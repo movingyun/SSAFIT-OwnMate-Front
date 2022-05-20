@@ -40,12 +40,17 @@ export default new Vuex.Store({
 
   },
   actions: {
-    getReviews({ commit },reviewVideoId) {
-      console.log("review 드루와~");
-      const API_URL = `${REST_API_REVIEW}?reviewVideoId=${reviewVideoId}`
+    getReviews({ commit },payload) {
+      console.log(payload)
+
+      const API_URL = `${REST_API_REVIEW}?reviewVideoId=${payload.reviewVideoId}`
       axios({
         url: API_URL,
         method: 'GET',
+        params : {
+          mode : payload.mode,
+          keyword : payload.keyword
+        }
       }).then((res) => {
         console.log(res)
         commit('GET_REVIEWS', res.data)
