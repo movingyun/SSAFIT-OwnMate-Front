@@ -30,7 +30,7 @@ const routes = [
     component: ReviewView,
     children: [
       {
-        path: "",
+        path: ":videoId",
         name: "reviewList",
         component: ReviewList,
       },

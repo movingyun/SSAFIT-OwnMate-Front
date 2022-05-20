@@ -40,7 +40,6 @@
 
       }
     },
-    props:['videoId'],
 
   }
 </script>
