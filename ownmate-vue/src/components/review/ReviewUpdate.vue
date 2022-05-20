@@ -1,16 +1,6 @@
 <template>
-  <div>
+  <div class="container">
   <h2>게시글 수정</h2>
-
-      <!-- <legend>수정이지롱</legend>
-      <label for="title">제목</label>
-      <input type="text" id="title" v-model="review.reviewTitle" /> <br />
-      <label for="writer">글쓴이</label>
-      <input type="text" id="writer" v-model="review.reviewWriter" /> <br />
-      <label for="content">글내용</label>
-      <textarea v-model="review.reviewContent" cols="30" rows="10"></textarea>
-      <button @click="updateReview">수정</button> -->
-
       <b-form-group label="reviewPw" label-for="input-1">
         <b-form-input id="input-1" v-model="review.reviewPw" trim></b-form-input>
       </b-form-group>
