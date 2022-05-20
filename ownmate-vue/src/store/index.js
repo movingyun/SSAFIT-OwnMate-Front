@@ -6,6 +6,7 @@ import router from '@/router'
 Vue.use(Vuex)
 
 const REST_API = `http://localhost:9999/api`
+const REST_API_REVIEW = `http://localhost:9999/api/review`
 
 export default new Vuex.Store({
   state: {
@@ -39,30 +40,30 @@ export default new Vuex.Store({
 
   },
   actions: {
-    getReviews({ commit }, payload) {
-      let params = null
-
-      if (payload) {
-       params = payload 
-      }
-      const API_URL = `${REST_API}/review`
+    getReviews({ commit }) {
+      console.log("review 드루와~");
+      const API_URL = REST_API_REVIEW;
       axios({
         url: API_URL,
         method: 'GET',
-        params,
+        params:{
+          reviewVideoId:'${videoId}'
+        },
       }).then((res) => {
         console.log(res)
-        commit('GET_REVIEWS', res.data)
-        
+        commit('GET_REVIEWS', res.data.items)
       }).catch((err) => {
         console.log(err)
       })
     },
-    getReview({ commit }, reviewVideoId) {
-      const API_URL = `${REST_API}/review?reviewVideoId=${reviewVideoId}`
+    getReview({ commit }) {
+      const API_URL = `REST_API_REVIEW`
       axios({
         url: API_URL,
         method: 'GET',
+        params:{
+          reviewNo : '${review.reviewNo'
+        },
       }).then(res => {
         commit('GET_REVIEW', res.data)
       }).catch((err) => {
@@ -108,6 +109,7 @@ export default new Vuex.Store({
       })
     },
     getVideos({commit}, payload){
+      console.log("여기는 오나?");
       let params = null
       if(payload){
         params = payload
@@ -126,6 +128,8 @@ export default new Vuex.Store({
       })
     },
     getVideo({ commit }, videoId) {
+      console.log("여기??");
+      console.log(videoId);
       const API_URL = `${REST_API}/video/${videoId}`
       axios({
         url: API_URL,

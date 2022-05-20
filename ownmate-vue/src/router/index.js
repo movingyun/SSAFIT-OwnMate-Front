@@ -52,7 +52,7 @@ const routes = [
     ],
   },
   {
-    path:"/video:video.videoId",
+    path:"/video/:videoId",
     name:"videoview",
     component:VideoView
   },

@@ -7,6 +7,10 @@
           <iframe width="550" height="300" :src='`https://www.youtube.com/embed/${video.videoId}`'></iframe>
           <div class="videotitle">
             <b-link :to="`/video/${video.videoId}`">{{video.videoTitle}}</b-link>
+            <div class="d-flex justify-content-between">
+            <div>{{video.videoChannel}}</div>
+            <div>조회수 : {{video.videoViewCnt}}</div>
+            </div>
           </div>
         </div>
       </div>
@@ -16,7 +20,7 @@
 
 <script>
   import {mapState} from 'vuex'
-
+  import VideoView from '@/views/VideoView.vue'
   export default{
     name:"VideoList",
     computed:{
@@ -28,7 +32,16 @@
     created(){
       this.$store.dispatch('getVideos')
     },
-    
+    component:{
+      VideoView,
+    },
+    data(){
+      return{
+
+      }
+    },
+    props:['videoId'],
+
   }
 </script>
 
