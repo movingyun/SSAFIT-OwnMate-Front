@@ -30,6 +30,7 @@
         </b-tr>
       </b-tbody>
     </b-table-simple>
+    <b-button variant="outline-primary" :to="`/review/create`">등록</b-button>
     <div class="text-align-center">
       <select v-model="mode">
         <option value="1">제목</option>
@@ -91,7 +92,7 @@ export default {
         keyword: this.keyword
       }
       this.$store.dispatch("getReviews", payload)
-    }
+    },
   }
 };
 </script>

@@ -80,7 +80,7 @@ export default new Vuex.Store({
         params: review
       }).then(() => {
         commit('CREATE_REVIEW', review)
-        router.push("/review")
+        router.push("/")
       }).catch((err) => {
         console.log(err)
       })

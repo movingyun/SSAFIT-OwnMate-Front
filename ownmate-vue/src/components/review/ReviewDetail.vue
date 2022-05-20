@@ -24,6 +24,8 @@
       <b-form-group label="글내용" label-for="textarea">
         <b-form-textarea id="textarea" :value="review.reviewContent"></b-form-textarea>
       </b-form-group>
+      <b-badge variant="success">{{ review.reviewLikeCnt }}</b-badge>
+      <b-badge variant="danger">{{ review.reviewDisLikeCnt }}</b-badge>
       <b-button variant="outline-primary" @click="moveUpdate">수정</b-button>
       <b-button variant="outline-danger" @click="deletereview">삭제</b-button>
     </div>
@@ -37,6 +39,7 @@ export default {
   name: "ReviewDetail",
   computed: {
     ...mapState(["review"]),
+    ...mapState(["video"])
   },
   created() {
     const pathName = new URL(document.location).pathname.split("/");
