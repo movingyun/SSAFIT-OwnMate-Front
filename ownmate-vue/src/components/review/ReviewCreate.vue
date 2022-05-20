@@ -1,10 +1,10 @@
 <template>
    <div class="container">
-    <h2>리뷰 등록</h2>{{video}}
+    <h2>리뷰 등록</h2>
     <div class="m-4">
-      <b-form-group label="videoId" label-for="input-1">
+      <!-- <b-form-group label="videoId" label-for="input-1">
         <b-form-input id="input-1" v-model="video.videoId" readonly trim ></b-form-input>
-      </b-form-group>
+      </b-form-group> -->
       <b-form-group label="reviewPw" label-for="input-1">
         <b-form-input id="input-1" v-model="reviewPw" trim></b-form-input>
       </b-form-group>
@@ -23,7 +23,6 @@
 </template>
 
 <script>
-import {mapState} from 'vuex'
 export default {
   name: "ReviewCreate",
   data() {
@@ -39,7 +38,7 @@ export default {
     createReview() {
       let newReview = {
         id: 0,
-        reviewVideoId:this.reviewVideoId,
+        reviewVideoId:this.video.videoId,
         reviewPw:this.reviewPw,
         reviewTitle: this.reviewTitle,
         reviewWriter: this.reviewWriter,
@@ -49,8 +48,10 @@ export default {
       this.$store.dispatch("createReview", newReview);
     }
   },
-    computed: {
-    ...mapState(["video"]),
+  computed: {
+    video() {
+      return this.$store.state.video;
+    },
   },
 };
 </script>

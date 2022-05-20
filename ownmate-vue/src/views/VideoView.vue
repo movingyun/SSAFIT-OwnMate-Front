@@ -12,16 +12,11 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
 import ReviewList from "@/components/review/ReviewList.vue";
 export default {
   name: "VideoDetail",
   components: {
     ReviewList,
-  },
-
-  computed: {
-    ...mapState(["video"]),
   },
   data() {
     return {
@@ -29,11 +24,10 @@ export default {
     };
   },
   created() {
-    this.$store.dispatch("getVideo");
     const pathName = new URL(document.location).pathname.split("/");
     const videoId = pathName[pathName.length - 1];
     this.videoId = videoId;
-    console.log(videoId);
+    this.$store.dispatch("getVideo", videoId);
   },
 };
 </script>

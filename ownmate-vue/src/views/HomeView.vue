@@ -27,7 +27,6 @@
       ...mapState([
         "videos"
       ]),
-
     },
     created(){
       this.$store.dispatch('getVideos')

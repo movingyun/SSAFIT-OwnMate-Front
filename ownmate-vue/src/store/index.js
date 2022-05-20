@@ -15,7 +15,7 @@ export default new Vuex.Store({
     reviews: [],
     review: {},
   },
-  getters: {
+  getters: {  
 
   },
   mutations: {
@@ -130,8 +130,6 @@ export default new Vuex.Store({
       })
     },
     getVideo({ commit }, videoId) {
-      console.log("여기??");
-      console.log(videoId);
       const API_URL = `${REST_API}/video/${videoId}`
       axios({
         url: API_URL,
