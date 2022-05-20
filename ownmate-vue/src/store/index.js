@@ -23,6 +23,7 @@ export default new Vuex.Store({
       state.reviews = payload
     },
     GET_REVIEW(state, payload) {
+      console.log("여기왔다")
       state.review = payload 
     },
     CREATE_REVIEW(state, payload) {
@@ -41,8 +42,6 @@ export default new Vuex.Store({
   },
   actions: {
     getReviews({ commit },payload) {
-      console.log(payload)
-
       const API_URL = `${REST_API_REVIEW}?reviewVideoId=${payload.reviewVideoId}`
       axios({
         url: API_URL,
@@ -52,20 +51,17 @@ export default new Vuex.Store({
           keyword : payload.keyword
         }
       }).then((res) => {
-        console.log(res)
         commit('GET_REVIEWS', res.data)
       }).catch((err) => {
         console.log(err)
       })
     },
-    getReview({ commit }) {
-      const API_URL = `REST_API_REVIEW`
+    getReview({ commit }, reviewNo) {
+      console.log(reviewNo)
+      const API_URL = `${REST_API_REVIEW}/${reviewNo}`
       axios({
         url: API_URL,
         method: 'GET',
-        params:{
-          reviewNo : '${review.reviewNo'
-        },
       }).then(res => {
         commit('GET_REVIEW', res.data)
       }).catch((err) => {
@@ -80,7 +76,7 @@ export default new Vuex.Store({
         params: review
       }).then(() => {
         commit('CREATE_REVIEW', review)
-        router.push("/")
+        router.push(`/video/${review.reviewVideoId}`)
       }).catch((err) => {
         console.log(err)
       })
@@ -93,25 +89,24 @@ export default new Vuex.Store({
         params: review
       }).then(() => {
         commit('UPDATE_REVIEW', review)
-        router.push({ name: 'reviewDetail', params: { id: review.reviewNo } })
+        router.push(`/review/${review.reviewNo}`)
       }).catch((err) => {
         console.log(err)
       })
     },
-    deleteReview(context, reviewNo) {
+    deleteReview(context, review) {
       context //이거 안하면 난리남... 
-      const API_URL = `${REST_API}/review/${reviewNo}`
+      const API_URL = `${REST_API}/review/${review.reviewNo}`
       axios({
         url: API_URL,
         method: 'DELETE',
       }).then(() => {
-        router.push({name: 'reviewList'})
+        router.push(`/video/${review.reviewVideoId}`)
       }).catch((err) => {
         console.log(err)
       })
     },
     getVideos({commit}, payload){
-      console.log("여기는 오나?");
       let params = null
       if(payload){
         params = payload
@@ -124,7 +119,6 @@ export default new Vuex.Store({
       }).then((res) => {
         console.log(res)
         commit('GET_VIDEOS', res.data)
-       console.log(this.videos)
       }).catch((err) => {
         console.log(err)
       })

@@ -22,12 +22,12 @@
         ></b-form-input>
       </b-form-group>
       <b-form-group label="글내용" label-for="textarea">
-        <b-form-textarea id="textarea" :value="review.reviewContent"></b-form-textarea>
+        <b-form-textarea id="textarea" :value="review.reviewContent" readonly></b-form-textarea>
       </b-form-group>
       <b-badge variant="success">{{ review.reviewLikeCnt }}</b-badge>
       <b-badge variant="danger">{{ review.reviewDisLikeCnt }}</b-badge>
       <b-button variant="outline-primary" @click="moveUpdate">수정</b-button>
-      <b-button variant="outline-danger" @click="deletereview">삭제</b-button>
+      <b-button variant="outline-danger" @click="deleteReview">삭제</b-button>
     </div>
   </div>
 </template>
@@ -39,21 +39,29 @@ export default {
   name: "ReviewDetail",
   computed: {
     ...mapState(["review"]),
-    ...mapState(["video"])
+  },
+  data(){
+    return{
+      reviewNo : null,
+    };
   },
   created() {
     const pathName = new URL(document.location).pathname.split("/");
-    const id = pathName[pathName.length - 1];
-    this.$store.dispatch("getReview", id);
+    const reviewNo = pathName[pathName.length - 1];
+    this.reviewNo = reviewNo;
+    console.log(reviewNo)
+    this.$store.dispatch("getReview", reviewNo);
   },
   methods: {
     moveUpdate() {
       this.$router.push({ name: "reviewUpdate" });
     },
-    deletereview() {
-      this.$store.dispatch("deleteReview", this.review.reviewNo);
+    deleteReview() {
+      console.log(this.review.reveiwNo)
+      this.$store.dispatch("deleteReview", this.review);
     },
   },
 };
+</script>
 
 <style></style>;

@@ -82,7 +82,6 @@ export default {
   },
   created() {
     this.$store.dispatch('getReviews',{mode : 0, reviewVideoId: this.reviewVideoId})
-    console.log(this.reviewVideoId)
   },
   methods: {
       search(){
