@@ -2,14 +2,6 @@
   <header>
     <b-navbar toggleable type="dark" variant="dark">
       <b-navbar-brand :to="{ name: 'home' }">OWN MATE</b-navbar-brand>
-      <b-nav-form>
-        <b-form-input
-          size="sm"
-          class="mr-md-2"
-          placeholder="Search"
-        ></b-form-input>
-        <b-button size="sm" class="my-2 my-sm-0" type="submit">Search</b-button>
-      </b-nav-form>
       <div>
         <span class="margin3">
       <b-button size="sm" id="loginbtn" :to="{ name: 'userLogin' }">
@@ -41,9 +33,10 @@
 </template>
 
 <script>
-export default {
 
-  
+
+export default {
+ 
 };
 </script>
 

@@ -8,6 +8,8 @@ import ReviewCreate from "@/components/review/ReviewCreate";
 import ReviewUpdate from "@/components/review/ReviewUpdate";
 import ReviewDetail from "@/components/review/ReviewDetail";
 
+import VideoSearch from "@/components/video/VideoSearch";
+
 import UserLogin from "@/components/user/UserLogin";
 import UserJoin from "@/components/user/UserJoin";
 import UserMyPage from "@/components/user/UserMyPage";
@@ -48,6 +50,11 @@ const routes = [
     path: "/video/:videoId",
     name: "videoview",
     component: VideoView,
+  },
+  {
+    path: "/video",
+    name: "videoSearch",
+    component: VideoSearch,
   },
   {
     path: "/login",
