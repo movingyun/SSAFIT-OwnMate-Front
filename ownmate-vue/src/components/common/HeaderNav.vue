@@ -11,15 +11,20 @@
         <b-button size="sm" class="my-2 my-sm-0" type="submit">Search</b-button>
       </b-nav-form>
       <div>
+        <span class="margin3">
       <b-button size="sm" id="loginbtn" :to="{ name: 'userLogin' }">
         <b-icon icon="person" variant="dark"></b-icon> login
       </b-button>
+        </span>
+        <span class="margin3">
+
       <b-navbar-toggle target="navbar-toggle-collapse">
         <template #default="{ expanded }">
           <b-icon v-if="expanded" icon="chevron-bar-up"></b-icon>
           <b-icon v-else icon="chevron-bar-down"></b-icon>
         </template>
       </b-navbar-toggle>
+        </span>
 
       <b-collapse id="navbar-toggle-collapse" is-nav>
         <b-navbar-nav class="ml-auto">
@@ -42,5 +47,8 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.margin3{
+  margin: 3px;
+}
 </style>
