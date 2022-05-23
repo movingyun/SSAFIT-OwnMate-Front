@@ -1,9 +1,6 @@
 <template>
   <div class="container">
   <h2>게시글 수정</h2>
-      <b-form-group label="reviewPw" label-for="input-1">
-        <b-form-input id="input-1" v-model="review.reviewPw" trim></b-form-input>
-      </b-form-group>
       <b-form-group label="제목" label-for="input-1">
         <b-form-input id="input-1" v-model="review.reviewTitle" trim></b-form-input>
       </b-form-group>

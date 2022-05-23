@@ -9,7 +9,7 @@
         <b-form-input
           size="sm"
           class="mr-md-2"
-          placeholder="Search"
+          placeholder="검색어를 입력해주세요."
           type="text"
           v-model.lazy="keyword"
           @keyup.enter="videosearch"
@@ -19,15 +19,15 @@
         >
       </div>
       <div>
-          <button
-            type="button"
-            class="btn btn-secondary margin3"
-            style="width: 150px; height: 50px"
-          >
-            검색결과🔍
-          </button>
+        <button
+          type="button"
+          class="btn btn-secondary margin3"
+          style="width: 150px; height: 50px"
+        >
+          검색결과🔍
+        </button>
         <div v-if="this.videos.length != 8">
-          <div class="d-flex justify-content-around flex-wrap">
+          <div class="d-flex justify-content-start flex-wrap .container-md">
             <div v-for="video in videos" :key="video.videoId">
               <div class="iframestyle" style="margin: 1%">
                 <iframe
@@ -57,7 +57,7 @@
       >
         인기영상🔥
       </button>
-      <div class="d-flex justify-content-around flex-wrap">
+      <div class="d-flex justify-content-start flex-wrap .container-md">
         <div v-for="video in videos3" :key="video.videoId">
           <div class="iframestyle" style="margin: 1%">
             <iframe
@@ -79,24 +79,27 @@
       </div>
       <!-- 부위별 영상 추천 -->
       <div>
-        <button
-          type="button"
-          class="btn btn-secondary margin3"
-          style="width: 150px; height: 50px"
-        >
-          부위별 영상🦾🦿
-        </button>
-        <div class="form-check marginb3">
-          <b-form-group class="mb-0" v-slot="{ ariaDescribedby }">
-            <b-form-radio-group
-              class="pt-2 text-align-left"
-              :options="['상체', '하체', '전신', '복부']"
-              :aria-describedby="ariaDescribedby"
-              v-model="part"
-            ></b-form-radio-group>
-          </b-form-group>
+        <div class="d-flex flex-row mb-3">
+          <button
+            type="button"
+            class="btn btn-secondary margin3"
+            style="width: 150px; height: 50px"
+          >
+            부위별 영상🦾🦿
+          </button>
+          <div class="form-check marginb3">
+            <br><br>
+            <b-form-group class="mb-0" v-slot="{ ariaDescribedby }">
+              <b-form-radio-group
+                class="pt-2 text-align-left"
+                :options="['상체', '하체', '전신', '복부']"
+                :aria-describedby="ariaDescribedby"
+                v-model="part"
+              ></b-form-radio-group>
+            </b-form-group>
+          </div>
         </div>
-        <div class="d-flex justify-content-around flex-wrap">
+        <div class="d-flex justify-content-start flex-wrap .container-md">
           <div v-for="video in allVideos" :key="video.videoId">
             <div v-if="video.videoPart === part">
               <div class="iframestyle" style="margin: 1%">

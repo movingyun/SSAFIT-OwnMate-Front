@@ -76,11 +76,23 @@ export default {
   },
   methods: {
     moveUpdate() {
-      this.$router.push({ name: "reviewUpdate" });
+      var userInput = prompt("비밀번호를 입력해주세요" + "");
+      if(userInput == this.review.reviewPw){
+        this.$router.push({ name: "reviewUpdate" });
+      }
+      else{
+        alert("비밀번호가 틀립니다.")
+      }      
     },
     deleteReview() {
-      console.log(this.review.reveiwNo);
-      this.$store.dispatch("deleteReview", this.review);
+      var userInput = prompt("비밀번호를 입력해주세요" + "");
+      if(userInput == this.review.reviewPw){
+        alert("삭제되었습니다.")
+        this.$store.dispatch("deleteReview", this.review);
+      }
+      else{
+        alert("비밀번호가 틀립니다.")
+      }
     },
   },
 };
@@ -90,4 +102,5 @@ export default {
 .margin3 {
   margin: 5px;
 }
-</style>;
+</style>
+;

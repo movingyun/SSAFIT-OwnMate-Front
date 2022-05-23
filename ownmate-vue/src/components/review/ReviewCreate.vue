@@ -5,9 +5,6 @@
       <!-- <b-form-group label="videoId" label-for="input-1">
         <b-form-input id="input-1" v-model="video.videoId" readonly trim ></b-form-input>
       </b-form-group> -->
-      <b-form-group label="reviewPw" label-for="input-1">
-        <b-form-input id="input-1" v-model="reviewPw" trim></b-form-input>
-      </b-form-group>
       <b-form-group label="제목" label-for="input-1">
         <b-form-input id="input-1" v-model="reviewTitle" trim></b-form-input>
       </b-form-group>
@@ -16,6 +13,9 @@
       </b-form-group>
       <b-form-group label="글내용" label-for="textarea">
         <b-form-textarea id="textarea" v-model="reviewContent"></b-form-textarea>
+      </b-form-group>
+      <b-form-group label="비밀번호" label-for="input-1">
+        <b-form-input id="input-1" v-model="reviewPw" trim placeholder="댓글 수정, 삭제 시 이용됩니다."></b-form-input>
       </b-form-group>
       <b-button variant="outline-success" @click="createReview">등록</b-button>
     </div>
