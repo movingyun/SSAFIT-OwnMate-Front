@@ -14,6 +14,7 @@ export default new Vuex.Store({
     video:{},
     reviews: [],
     review: {},
+    videos3:[],
   },
   getters: {  
 
@@ -37,6 +38,9 @@ export default new Vuex.Store({
     GET_VIDEO(state, payload){
       state.video = payload
     },
+    GET_VIDEOS3(state, payload){
+      state.videos3 = payload
+    }
 
   },
   actions: {
@@ -129,6 +133,18 @@ export default new Vuex.Store({
         method: 'GET',
       }).then(res => {
         commit('GET_VIDEO', res.data)
+      }).catch((err) => {
+        console.log(err)
+      })
+    },
+    getVideos3({commit}){
+      const API_URL = `${REST_API}/video3`
+      axios({
+        url:API_URL,
+        method:'GET',
+      }).then((res) => {
+        console.log(res)
+        commit('GET_VIDEOS3', res.data)
       }).catch((err) => {
         console.log(err)
       })

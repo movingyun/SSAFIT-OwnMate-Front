@@ -2,8 +2,8 @@
   <div>
     <!-- 로고 사진 -->
     <img src="@/assets/cover.png" width="100%" />
-    <br>
-    <br>
+    <br />
+    <br />
     <div class="container">
       <div class="d-flex input-group mb-2">
         <b-form-input
@@ -11,25 +11,55 @@
           class="mr-md-2"
           placeholder="Search"
           type="text"
-          v-model="keyword"
+          v-model.lazy="keyword"
           @keyup.enter="videosearch"
         ></b-form-input>
         <b-button size="sm" class="my-2 my-sm-0" @click="videosearch"
           >Search</b-button
         >
       </div>
-      <!-- 조회수 순으로 비디오 뽑아주기 -->
       <div>
-        <button
-          type="button"
-          class="btn btn-secondary margin3"
-          style="width: 150px; height: 50px"
-        >
-          인기영상🔥
-        </button>
+        <div v-if="this.keyword.length > 0">
+          <button
+            type="button"
+            class="btn btn-secondary margin3"
+            style="width: 150px; height: 50px"
+          >
+            검색결과🔍
+          </button>
+
+          <div class="d-flex justify-content-around flex-wrap">
+            <div v-for="video in videos" :key="video.videoId">
+              <div class="iframestyle" style="margin: 1%">
+                <iframe
+                  width="550"
+                  height="300"
+                  :src="`https://www.youtube.com/embed/${video.videoId}`"
+                ></iframe>
+                <div class="videotitle">
+                  <b-link :to="`/video/${video.videoId}`">{{
+                    video.videoTitle
+                  }}</b-link>
+                  <div class="d-flex justify-content-between">
+                    <div>{{ video.videoChannel }}</div>
+                    <div>조회수 : {{ video.videoViewCnt }}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+      <!-- 조회수 순으로 비디오 뽑아주기 -->
+      <button
+        type="button"
+        class="btn btn-secondary margin3"
+        style="width: 150px; height: 50px"
+      >
+        인기영상🔥
+      </button>
       <div class="d-flex justify-content-around flex-wrap">
-        <div v-for="video in videos" :key="video.videoId">
+        <div v-for="video in videos3" :key="video.videoId">
           <div class="iframestyle" style="margin: 1%">
             <iframe
               width="550"
@@ -101,9 +131,11 @@ export default {
   name: "VideoList",
   computed: {
     ...mapState(["videos"]),
+    ...mapState(["videos3"]),
   },
   created() {
     this.$store.dispatch("getVideos");
+    this.$store.dispatch("getVideos3");
   },
   component: {
     VideoView,
