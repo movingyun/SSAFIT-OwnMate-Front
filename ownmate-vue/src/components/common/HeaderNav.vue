@@ -17,7 +17,7 @@
             </b-button>
           </span>
         </span>
-        
+
         <span class="margin3">
           <b-navbar-toggle target="navbar-toggle-collapse">
             <template #default="{ expanded }">
@@ -51,6 +51,12 @@ export default {
   methods: {
     logout() {
       sessionStorage.clear();
+      window.location.reload();
+    },
+  },
+  watch: {
+    sessionStorage : function () {
+      this.isLogin = sessionStorage.getItem("access-token");
     },
   },
 };

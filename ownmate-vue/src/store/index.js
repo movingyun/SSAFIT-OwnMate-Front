@@ -178,6 +178,7 @@ export default new Vuex.Store({
         sessionStorage.setItem("access-token", res.data["access-token"])
         //로그인이 되면 홈으로 튕긴다.
         router.push({name:'home'})
+        window.location.reload();
       }).catch(() => {
         alert("아이디 혹은 비밀번호가 틀립니다.")
       })
