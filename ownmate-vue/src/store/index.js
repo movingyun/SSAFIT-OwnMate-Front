@@ -133,6 +133,19 @@ export default new Vuex.Store({
         console.log(err)
       })
     },
+    userJoin(context, user) {
+      context
+      const API_URL = `${REST_API}/join`
+      axios({
+        url: API_URL,
+        method: 'POST',
+        params : user
+      }).then(() => {
+        router.push(`/login`)
+      }).catch((err) => {
+        console.log(err)
+      })
+    },
   },
   modules: {
   }

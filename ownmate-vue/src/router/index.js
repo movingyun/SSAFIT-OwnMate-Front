@@ -50,7 +50,7 @@ const routes = [
     component: VideoView,
   },
   {
-    path: "/user",
+    path: "/login",
     name: "userLogin",
     component: UserLogin,
   },

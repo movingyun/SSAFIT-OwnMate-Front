@@ -19,7 +19,7 @@
           label-cols-sm="2"
           label-align-sm="right"
         >
-          <b-form-input type="text"></b-form-input>
+          <b-form-input type="text" id="id" v-model="user.id"></b-form-input>
         </b-form-group>
         <b-form-group
           label="패스워드:"
@@ -27,7 +27,7 @@
           label-cols-sm="2"
           label-align-sm="right"
         >
-          <b-form-input type="text"></b-form-input>
+          <b-form-input type="text" id="pw" v-model="user.pw"></b-form-input>
         </b-form-group>
         <b-form-group
           label="패스워드 확인:"
@@ -35,7 +35,11 @@
           label-cols-sm="2"
           label-align-sm="right"
         >
-          <b-form-input type="text"></b-form-input>
+          <b-form-input
+            type="text"
+            id="pwCheck"
+            v-model="user.pwCheck"
+          ></b-form-input>
         </b-form-group>
 
         <b-form-group
@@ -44,7 +48,11 @@
           label-cols-sm="2"
           label-align-sm="right"
         >
-          <b-form-input type="text"></b-form-input>
+          <b-form-input
+            type="text"
+            id="name"
+            v-model="user.name"
+          ></b-form-input>
         </b-form-group>
 
         <b-form-group
@@ -53,10 +61,7 @@
           label-cols-sm="2"
           label-align-sm="right"
         >
-          <b-form-input
-            type="text"
-            placeholder="**주소검색같은버튼으로 바꿔야함**"
-          ></b-form-input>
+          <b-form-input type="text" id="gym" v-model="user.gym"></b-form-input>
         </b-form-group>
 
         <b-form-group
@@ -65,7 +70,11 @@
           label-cols-sm="2"
           label-align-sm="right"
         >
-          <b-form-input type="text" placeholder="ex) 6(개월)"></b-form-input>
+          <b-form-input
+            type="number"
+            id="career"
+            v-model="user.career"
+          ></b-form-input>
         </b-form-group>
         <b-form-group
           label="연령:"
@@ -73,7 +82,7 @@
           label-cols-sm="2"
           label-align-sm="right"
         >
-          <b-form-input type="text" placeholder="ex) 20(세)"></b-form-input>
+          <b-form-input type="number" id="age" v-model="user.age"></b-form-input>
         </b-form-group>
         <b-form-group
           label="성별:"
@@ -86,10 +95,11 @@
             class="pt-2 text-align-left"
             :options="['Male', 'Female']"
             :aria-describedby="ariaDescribedby"
+            v-model="user.gender"
           ></b-form-radio-group>
         </b-form-group>
         <div class="text-align-center">
-          <b-button :to="{name:'userLogin'}">Join</b-button>
+          <b-button variant="outline-success" @click="join">회원가입</b-button>
         </div>
       </b-form-group>
     </b-card>
@@ -97,7 +107,40 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      user: {
+        id: "",
+        pw: "",
+        pwCheck: "",
+        name: "",
+        gym: "",
+        age: 0,
+        career: 0,
+        gender: "",
+        file_name: "file_name",
+        file_uri: "file_uri",
+      },
+    };
+  },
+  methods: {
+    join() {
+      let user = {
+        userId: this.user.id,
+        userPw: this.user.pw,
+        userName: this.user.name,
+        userGym: Number(this.user.gym),
+        userAge: Number(this.user.age),
+        userExerciseCareer: Number(this.user.career),
+        userGender: this.user.gender,
+        userFileName: this.user.file_name,
+        userFileUri: this.user.file_uri
+      };
+      this.$store.dispatch("userJoin", user);
+    },
+  },
+};
 </script>
 
 <style scoped>
