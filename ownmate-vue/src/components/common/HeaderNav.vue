@@ -24,11 +24,9 @@
       <b-collapse id="navbar-toggle-collapse" is-nav>
         <b-navbar-nav class="ml-auto">
           <b-nav-item :to="{ name: 'home' }">홈</b-nav-item>
-          <b-nav-item :to="{ name: 'videoview' }">영상</b-nav-item>
           <b-nav-item href="#">탐색</b-nav-item>
           <b-nav-item href="#">팔로우 목록</b-nav-item>
           <b-nav-item href="#">찜한 영상</b-nav-item>
-          <b-nav-item to="/review">리뷰 관리</b-nav-item>
           <b-nav-item :to="{name:'userMyPage'}">내 정보 관리</b-nav-item>
         </b-navbar-nav>
       </b-collapse>
