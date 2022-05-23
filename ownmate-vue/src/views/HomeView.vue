@@ -27,7 +27,6 @@
             검색결과🔍
           </button>
         <div v-if="this.videos.length != 8">
-
           <div class="d-flex justify-content-around flex-wrap">
             <div v-for="video in videos" :key="video.videoId">
               <div class="iframestyle" style="margin: 1%">
@@ -98,7 +97,7 @@
           </b-form-group>
         </div>
         <div class="d-flex justify-content-around flex-wrap">
-          <div v-for="video in videos" :key="video.videoId">
+          <div v-for="video in allVideos" :key="video.videoId">
             <div v-if="video.videoPart === part">
               <div class="iframestyle" style="margin: 1%">
                 <iframe
@@ -132,6 +131,7 @@ export default {
   computed: {
     ...mapState(["videos"]),
     ...mapState(["videos3"]),
+    ...mapState(["allVideos"]),
   },
   created() {
     this.$store.dispatch("getVideos");

@@ -15,6 +15,7 @@ export default new Vuex.Store({
     reviews: [],
     review: {},
     videos3:[],
+    allVideos:[],
     isLogin:false,
   },
   getters: {  
@@ -35,6 +36,9 @@ export default new Vuex.Store({
     },
     GET_VIDEOS(state, payload){
       state.videos = payload
+    },
+    GET_ALLVIDEOS(state, payload){
+      state.allVideos = payload
     },
     GET_VIDEO(state, payload){
       state.video = payload
@@ -63,7 +67,6 @@ export default new Vuex.Store({
       })
     },
     getReview({ commit }, reviewNo) {
-      console.log(reviewNo)
       const API_URL = `${REST_API_REVIEW}/${reviewNo}`
       axios({
         url: API_URL,
@@ -123,8 +126,10 @@ export default new Vuex.Store({
         method:'GET',
         params
       }).then((res) => {
-        console.log(res)
         commit('GET_VIDEOS', res.data)
+        if(this.state.allVideos.length===0){
+          commit('GET_ALLVIDEOS', res.data)
+        }
       }).catch((err) => {
         console.log(err)
       })
@@ -146,7 +151,6 @@ export default new Vuex.Store({
         url:API_URL,
         method:'GET',
       }).then((res) => {
-        console.log(res)
         commit('GET_VIDEOS3', res.data)
       }).catch((err) => {
         console.log(err)
