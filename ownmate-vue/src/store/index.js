@@ -14,7 +14,11 @@ export default new Vuex.Store({
     video:{},
     reviews: [],
     review: {},
+<<<<<<< HEAD
     videos3:[],
+=======
+    isLogin:false,
+>>>>>>> f2fc09f9f82ac03f68a9e8b118a8e04aa642cc69
   },
   getters: {  
 
@@ -38,8 +42,13 @@ export default new Vuex.Store({
     GET_VIDEO(state, payload){
       state.video = payload
     },
+<<<<<<< HEAD
     GET_VIDEOS3(state, payload){
       state.videos3 = payload
+=======
+    USER_LOGIN(state){
+      state.isLogin = true
+>>>>>>> f2fc09f9f82ac03f68a9e8b118a8e04aa642cc69
     }
 
   },
@@ -162,6 +171,20 @@ export default new Vuex.Store({
         console.log(err)
       })
     },
+    userLogin({commit}, user){
+      const API_URL = `${REST_API}/login`
+      axios({
+        url:API_URL,
+        method:'POST',
+        params : user
+      }).then(res=>{
+        //token 받아온걸 sessionStorage에 저장
+        commit('USER_LOGIN')
+        sessionStorage.setItem("access-token", res.data["access-token"])
+        //로그인이 되면 홈으로 튕긴다.
+        router.push({name:'home'})
+      })
+    }
   },
   modules: {
   }
