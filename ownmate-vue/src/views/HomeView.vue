@@ -19,7 +19,6 @@
         >
       </div>
       <div>
-        <div v-if="this.keyword.length > 0">
           <button
             type="button"
             class="btn btn-secondary margin3"
@@ -27,6 +26,7 @@
           >
             검색결과🔍
           </button>
+        <div v-if="this.videos.length != 8">
 
           <div class="d-flex justify-content-around flex-wrap">
             <div v-for="video in videos" :key="video.videoId">
