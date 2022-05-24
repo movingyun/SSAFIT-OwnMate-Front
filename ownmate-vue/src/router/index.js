@@ -13,6 +13,7 @@ import VideoSearch from "@/components/video/VideoSearch";
 import UserLogin from "@/components/user/UserLogin";
 import UserJoin from "@/components/user/UserJoin";
 import UserMyPage from "@/components/user/UserMyPage";
+import UserUpdate from "@/components/user/UserUpdate";
 
 import FollowList from "@/components/follower/FollowList";
 
@@ -67,9 +68,14 @@ const routes = [
     component: UserJoin,
   },
   {
-    path: "/mypage",
+    path: "/user/:userId",
     name: "userMyPage",
     component: UserMyPage,
+  },
+  {
+    path: "/user/update",
+    name: "userUpdate",
+    component: UserUpdate,
   },
   {
     path: "/follow",
@@ -89,7 +95,7 @@ router.beforeEach((to, from, next) => {
     next();
   } else if (
     !sessionStorage.getItem("access-token") &&
-    !to.path.includes("login") && !to.path.includes("join")
+    !to.path.includes("login") && !to.path.includes("join") && !to.path.includes("user")
   ) {
     alert("로그인을 완료해야 이용 가능한 기능입니다.");
     next("/login");

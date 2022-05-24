@@ -27,7 +27,6 @@
               id="input-2"
               v-model="user.data.userName"
               trim
-              readonly
             ></b-form-input>
           </b-form-group>
 
@@ -36,7 +35,6 @@
               id="input-3"
               v-model="user.data.userGym"
               trim
-              readonly
             ></b-form-input>
           </b-form-group>
 
@@ -45,7 +43,6 @@
               id="input-4"
               v-model="user.data.userExerciseCareer"
               trim
-              readonly
             ></b-form-input>
           </b-form-group>
 
@@ -55,7 +52,6 @@
               id="input-5"
               v-model="user.data.userAge"
               trim
-              readonly
             ></b-form-input>
           </b-form-group>
 
@@ -64,11 +60,10 @@
             :options="['Male', 'Female']"
             :aria-describedby="ariaDescribedby"
             v-model="user.data.gender"
-            readonly
           ></b-form-radio-group>
         
           <div class="text-align-center">
-            <b-button @click="moveUserUpdate">수정</b-button>
+            <b-button @click="updateUser">수정</b-button>
           </div>
         </b-form-group>
       </b-card>
@@ -77,19 +72,26 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import {mapState} from 'vuex'
 
 export default {
-  //user정보를 store에서 가져옴
-  computed: {
-    ...mapState(["user"]),
-  },
-  methods: {
-    moveUserUpdate() {
-      this.$router.push({ name: "userUpdate" });
-    },
-  },
-};
+    //user가져옴
+computed: {
+  ...mapState(['user'])
+},
+methods: {
+  updateUser(){
+    let updateUser = {
+      userName: this.user.userName,
+      userGym: this.user.userGym,
+      userAge: this.user.userAge,
+      userExerciseCareer: this.user.userExerciseCareer,
+      userGender : this.user. userGender,
+    }
+    this.$store.dispatch('updateUser', updateUser)
+  }
+}
+}
 </script>
 
 <style scoped>

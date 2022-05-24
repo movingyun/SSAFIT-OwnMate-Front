@@ -69,6 +69,7 @@ export default {
     },
     login() {
       this.$store.dispatch('userLogin', this.user)
+      this.$store.dispatch('getUser', this.user)
     },
   },
 };

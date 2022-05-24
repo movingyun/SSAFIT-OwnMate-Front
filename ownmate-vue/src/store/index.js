@@ -17,6 +17,7 @@ export default new Vuex.Store({
     videos3:[],
     allVideos:[],
     isLogin:false,
+    user:{},
   },
   getters: {  
 
@@ -48,7 +49,13 @@ export default new Vuex.Store({
     },
     USER_LOGIN(state){
       state.isLogin = true
-    }
+    },
+    UPDATE_USER(state, payload) {
+      state.user = payload
+    },
+    GET_USER(state, payload) {
+      state.user = payload
+    },
   },
   actions: {
     getReviews({ commit },payload) {
@@ -177,16 +184,39 @@ export default new Vuex.Store({
         method:'POST',
         params : user
       }).then(res=>{
+        commit('USER_LOGIN',user)
         //token 받아온걸 sessionStorage에 저장
-        commit('USER_LOGIN')
         sessionStorage.setItem("access-token", res.data["access-token"])
         //로그인이 되면 홈으로 튕긴다.
         router.push({name:'home'})
-        window.location.reload();
       }).catch(() => {
         alert("아이디 혹은 비밀번호가 틀립니다.")
       })
-    }
+    },
+    updateUser({ commit }, user) {
+      const API_URL = `${REST_API}/user`
+      axios({
+        url: API_URL,
+        method: 'PUT',
+        params: user
+      }).then(() => {
+        commit('UPDATE_USER', user)
+        router.push(`/user/${user.userId}`)
+      }).catch((err) => {
+        console.log(err)
+      })
+    },
+    getUser({ commit }, user) {
+      const API_URL = `${REST_API}/user/${user.userId}`
+      axios({
+        url: API_URL,
+        method: 'GET',
+      }).then((res) => {
+        commit('GET_USER', res)
+      }).catch((err) => {
+        console.log(err)
+      })
+    },
   },
   modules: {
   }

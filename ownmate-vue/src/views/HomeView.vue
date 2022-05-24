@@ -26,27 +26,32 @@
         >
           검색결과🔍
         </button>
-        <div v-if="this.videos.length != 8">
-          <div class="d-flex justify-content-start flex-wrap .container-md">
-            <div v-for="video in videos" :key="video.videoId">
-              <div class="iframestyle" style="margin: 1%">
+        <div v-if="this.videos.length != this.allVideos.length">
+        <div class="d-flex justify-content-start flex-wrap .container-md left-padding">
+          <div v-for="video in videos" :key="video.videoId">
+              <!-- 카드 -->
+              <div class="card h-300" style="width: 310px">
                 <iframe
-                  width="550"
-                  height="300"
                   :src="`https://www.youtube.com/embed/${video.videoId}`"
                 ></iframe>
-                <div class="videotitle">
-                  <b-link :to="`/video/${video.videoId}`">{{
-                    video.videoTitle
-                  }}</b-link>
-                  <div class="d-flex justify-content-between">
+                <div class="card-body">
+                  <h5 class="videotitle">
+                    <b-link :to="`/video/${video.videoId}`">{{
+                      video.videoTitle
+                    }}</b-link>
+                  </h5>
+                  <div class="videotext">
                     <div>{{ video.videoChannel }}</div>
                     <div>조회수 : {{ video.videoViewCnt }}</div>
                   </div>
                 </div>
               </div>
-            </div>
+              <div
+                class="d-flex justify-content-start flex-wrap"
+                style="margin: 1%"
+              ></div>
           </div>
+        </div>
         </div>
       </div>
       <!-- 조회수 순으로 비디오 뽑아주기 -->
@@ -57,26 +62,31 @@
       >
         인기영상🔥
       </button>
-      <div class="d-flex justify-content-start flex-wrap .container-md">
-        <div v-for="video in videos3" :key="video.videoId">
-          <div class="iframestyle" style="margin: 1%">
-            <iframe
-              width="550"
-              height="300"
-              :src="`https://www.youtube.com/embed/${video.videoId}`"
-            ></iframe>
-            <div class="videotitle">
-              <b-link :to="`/video/${video.videoId}`">{{
-                video.videoTitle
-              }}</b-link>
-              <div class="d-flex justify-content-between">
-                <div>{{ video.videoChannel }}</div>
-                <div>조회수 : {{ video.videoViewCnt }}</div>
+        <div class="d-flex justify-content-center flex-wrap .container-md">
+          <div v-for="video in videos3" :key="video.videoId">
+              <!-- 카드 -->
+              <div class="card h-200" style="width: 310px">
+                <iframe
+                  :src="`https://www.youtube.com/embed/${video.videoId}`"
+                ></iframe>
+                <div class="card-body">
+                  <h5 class="videotitle">
+                    <b-link :to="`/video/${video.videoId}`">{{
+                      video.videoTitle
+                    }}</b-link>
+                  </h5>
+                  <div class="videotext">
+                    <div>{{ video.videoChannel }}</div>
+                    <div>조회수 : {{ video.videoViewCnt }}</div>
+                  </div>
+                </div>
               </div>
-            </div>
+              <div
+                class="d-flex justify-content-start flex-wrap"
+                style="margin: 1%"
+              ></div>
           </div>
         </div>
-      </div>
       <!-- 부위별 영상 추천 -->
       <div>
         <div class="d-flex flex-row mb-3">
@@ -88,7 +98,7 @@
             부위별 영상🦾🦿
           </button>
           <div class="form-check marginb3">
-            <br><br>
+            <br /><br />
             <b-form-group class="mb-0" v-slot="{ ariaDescribedby }">
               <b-form-radio-group
                 class="pt-2 text-align-left"
@@ -99,25 +109,32 @@
             </b-form-group>
           </div>
         </div>
-        <div class="d-flex justify-content-start flex-wrap .container-md">
+
+        <!-- 영상 나오는 곳 -->
+        <div class="d-flex justify-content-center flex-wrap .container-md">
           <div v-for="video in allVideos" :key="video.videoId">
             <div v-if="video.videoPart === part">
-              <div class="iframestyle" style="margin: 1%">
+              <!-- 카드 -->
+              <div class="card h-200" style="width: 310px">
                 <iframe
-                  width="550"
-                  height="300"
                   :src="`https://www.youtube.com/embed/${video.videoId}`"
                 ></iframe>
-                <div class="videotitle">
-                  <b-link :to="`/video/${video.videoId}`">{{
-                    video.videoTitle
-                  }}</b-link>
-                  <div class="d-flex justify-content-between">
+                <div class="card-body">
+                  <h5 class="videotitle">
+                    <b-link :to="`/video/${video.videoId}`">{{
+                      video.videoTitle
+                    }}</b-link>
+                  </h5>
+                  <div class="videotext">
                     <div>{{ video.videoChannel }}</div>
                     <div>조회수 : {{ video.videoViewCnt }}</div>
                   </div>
                 </div>
               </div>
+              <div
+                class="d-flex justify-content-start flex-wrap"
+                style="margin: 1%"
+              ></div>
             </div>
           </div>
         </div>
@@ -135,6 +152,7 @@ export default {
     ...mapState(["videos"]),
     ...mapState(["videos3"]),
     ...mapState(["allVideos"]),
+    ...mapState(["isLogin"]),
   },
   created() {
     this.$store.dispatch("getVideos");
@@ -171,5 +189,24 @@ export default {
   margin-bottom: 3%;
   margin-left: 3%;
   margin-right: 3%;
+}
+.videotitle {
+  font-size: 15px;
+}
+.videotext {
+  font-size: 13px;
+  padding: 0px;
+}
+.left-padding {
+  padding-left: 45px;
+}
+.h-200{
+  height: 300px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.h-300{
+  height: 300px;
+  margin-left: 20px;
 }
 </style>

@@ -33,7 +33,7 @@
             <b-nav-item href="#">탐색</b-nav-item>
             <b-nav-item href="#">팔로우 목록</b-nav-item>
             <b-nav-item href="#">찜한 영상</b-nav-item>
-            <b-nav-item :to="{ name: 'userMyPage' }">내 정보 관리</b-nav-item>
+            <b-nav-item :to="`/user/${user.userId}`">내 정보 관리</b-nav-item>
           </b-navbar-nav>
         </b-collapse>
       </div>
@@ -42,16 +42,19 @@
 </template>
 
 <script>
+import {mapState} from 'vuex'
+
 export default {
-  data() {
-    return {
-      isLogin: sessionStorage.getItem("access-token"),
-    };
-  },
+    //user가져옴
+computed: {
+  ...mapState(['user']),
+    isLogin() {
+      return this.$store.state.isLogin;
+    },
+},
   methods: {
     logout() {
       sessionStorage.clear();
-      window.location.reload();
     },
   },
   watch: {
