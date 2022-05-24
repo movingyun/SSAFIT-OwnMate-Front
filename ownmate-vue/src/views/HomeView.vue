@@ -105,11 +105,10 @@
           </button>
           <div class="form-check marginb3">
             <br /><br />
-            <b-form-group class="mb-0" v-slot="{ ariaDescribedby }">
+            <b-form-group class="mb-0" >
               <b-form-radio-group
                 class="pt-2 text-align-left"
                 :options="['상체', '하체', '전신', '복부']"
-                :aria-describedby="ariaDescribedby"
                 v-model="part"
               ></b-form-radio-group>
             </b-form-group>
@@ -221,7 +220,7 @@ export default {
 }.goBtn {
   background-color: white;
   position: absolute;
-  top: 80%;
+  top: 70%;
   left : 45%;
   font-size: 30px;
 }#scroll4{

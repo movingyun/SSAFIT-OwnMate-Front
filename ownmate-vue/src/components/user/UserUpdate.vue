@@ -3,7 +3,6 @@
     <br />
     <br />
     <br />
-    {{user}}
     <div class="text-align-center">
       <b-card bg-variant="light">
         <img src="@/assets/login.png" />
@@ -88,13 +87,11 @@
             label-cols-sm="2"
             label-align-sm="right"
             class="mb-0"
-            v-slot="{ ariaDescribedby }"
           >
             <b-form-radio-group
               class="pt-2 text-align-left"
-              :options="['Male', 'Female']"
-              :aria-describedby="ariaDescribedby"
-              v-model="user.gender"
+              :options="['Female', 'Male']"
+              v-model="user.userGender"
             ></b-form-radio-group>
           </b-form-group>
 

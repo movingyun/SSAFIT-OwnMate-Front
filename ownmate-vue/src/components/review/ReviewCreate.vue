@@ -1,6 +1,6 @@
 <template>
    <div class="container">
-         <br>
+    <br>
     <br>
     <br>
     <h2>리뷰 등록</h2>
@@ -12,7 +12,7 @@
         <b-form-input id="input-1" v-model="reviewTitle" trim></b-form-input>
       </b-form-group>
       <b-form-group label="글쓴이" label-for="input-2">
-        <b-form-input id="input-2" v-model="this.user.userName" readonly trim></b-form-input>
+        <b-form-input id="input-2" v-model="reviewWriter" readonly trim></b-form-input>
       </b-form-group>
       <b-form-group label="글내용" label-for="textarea">
         <b-form-textarea id="textarea" v-model="reviewContent"></b-form-textarea>
@@ -26,7 +26,6 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
 
 
 export default {
@@ -36,7 +35,7 @@ export default {
       reviewVideoId:"",
       reviewPw:"",
       reviewTitle: "",
-      reviewWriter: this.user.userName,
+      reviewWriter: sessionStorage.getItem("userId"),
       reviewContent: "",
     };
   },
@@ -50,12 +49,10 @@ export default {
         reviewWriter: this.reviewWriter,
         reviewContent: this.reviewContent
       };
-
       this.$store.dispatch("createReview", newReview);
     }
   },
   computed: {
-    ...mapState(["user"]),
     video() {
       return this.$store.state.video;
     },
