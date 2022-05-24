@@ -1,5 +1,8 @@
 <template>
-  <div class="text-align-center">
+  <div class="text-align-center container">
+        <br>
+    <br>
+    <br>
     <b-card bg-variant="light">
       <img src="@/assets/login.png" />
       <br />

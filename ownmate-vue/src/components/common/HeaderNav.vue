@@ -1,6 +1,6 @@
 <template>
   <header>
-    <b-navbar toggleable type="dark" variant="dark">
+    <b-navbar class='navbar fixed-top' toggleable type="dark" variant="dark">
       <b-navbar-brand :to="{ name: 'home' }">OWN MATE</b-navbar-brand>
       <div>
         <span v-if="!isLogin">
@@ -55,6 +55,7 @@ computed: {
   methods: {
     logout() {
       sessionStorage.clear();
+      this.$store.dispatch("userLogout");
     },
   },
   watch: {

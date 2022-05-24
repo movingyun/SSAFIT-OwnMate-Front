@@ -1,5 +1,8 @@
 <template>
   <div class="container">
+        <br>
+    <br>
+    <br>
     <h3>리뷰 상세보기</h3>
     <div class="m-4">
       <div class="d-flex justify-content-between">

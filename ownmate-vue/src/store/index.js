@@ -56,6 +56,9 @@ export default new Vuex.Store({
     GET_USER(state, payload) {
       state.user = payload
     },
+    USER_LOGOUT(state) {
+      state.isLogin = false
+    },
   },
   actions: {
     getReviews({ commit },payload) {
@@ -216,6 +219,9 @@ export default new Vuex.Store({
       }).catch((err) => {
         console.log(err)
       })
+    },
+    userLogout({commit}){
+      commit('USER_LOGOUT')
     },
   },
   modules: {

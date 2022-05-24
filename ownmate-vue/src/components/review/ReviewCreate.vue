@@ -1,5 +1,8 @@
 <template>
    <div class="container">
+         <br>
+    <br>
+    <br>
     <h2>리뷰 등록</h2>
     <div class="m-4">
       <!-- <b-form-group label="videoId" label-for="input-1">

@@ -1,6 +1,10 @@
 <template>
   <div class="container">
+        <br>
+    <br>
+    <br>
   <h2>게시글 수정</h2>
+  
       <b-form-group label="제목" label-for="input-1">
         <b-form-input id="input-1" v-model="review.reviewTitle" trim></b-form-input>
       </b-form-group>

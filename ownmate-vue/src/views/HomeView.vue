@@ -1,9 +1,15 @@
 <template>
   <div>
     <!-- 로고 사진 -->
-    <img src="@/assets/cover.png" width="100%" />
-    <br />
-    <br />
+    <div id="backImg">
+      <img src="@/assets/cover2.jpg" width="100%" height="750" />
+      <b-button class="goBtn"><a id="scroll4" href="#start" class="w-btn-outline w-btn-skin-outline" >🏋️‍♂️Get Start!!</a></b-button>
+    </div>
+    <div id="start"></div>
+    <br>
+    <br>
+    <br>
+
     <div class="container">
       <div class="d-flex input-group mb-2">
         <b-form-input
@@ -208,5 +214,18 @@ export default {
 .h-300{
   height: 300px;
   margin-left: 20px;
+}#testImg{
+  position : relative;
+  width: 700px;
+  height: 350px;
+}.goBtn {
+  background-color: white;
+  position: absolute;
+  top: 80%;
+  left : 45%;
+  font-size: 30px;
+}#scroll4{
+  text-decoration: none;
+  color: black;
 }
 </style>

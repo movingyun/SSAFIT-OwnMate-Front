@@ -1,5 +1,8 @@
 <template>
-  <div>
+  <div class="text-align-center container">
+    <br />
+    <br />
+    <br />
     <div class="text-align-center">
       <b-card bg-variant="light">
         <img src="@/assets/login.png" />
@@ -13,7 +16,13 @@
         >
           <br />
           <br />
-          <b-form-group label="아이디" label-for="input-1">
+
+          <b-form-group
+            label="아이디"
+            label-for="input-1"
+            label-cols-sm="2"
+            label-align-sm="right"
+          >
             <b-form-input
               id="input-1"
               v-model="user.data.userId"
@@ -22,7 +31,12 @@
             ></b-form-input>
           </b-form-group>
 
-          <b-form-group label="닉네임" label-for="input-2">
+          <b-form-group
+            label="닉네임"
+            label-for="input-2"
+            label-cols-sm="2"
+            label-align-sm="right"
+          >
             <b-form-input
               id="input-2"
               v-model="user.data.userName"
@@ -31,7 +45,12 @@
             ></b-form-input>
           </b-form-group>
 
-          <b-form-group label="주변헬스장" label-for="input-3">
+          <b-form-group
+            label="주변헬스장"
+            label-for="input-3"
+            label-cols-sm="2"
+            label-align-sm="right"
+          >
             <b-form-input
               id="input-3"
               v-model="user.data.userGym"
@@ -40,7 +59,12 @@
             ></b-form-input>
           </b-form-group>
 
-          <b-form-group label="운동경력" label-for="input-4">
+          <b-form-group
+            label="운동경력"
+            label-for="input-4"
+            label-cols-sm="2"
+            label-align-sm="right"
+          >
             <b-form-input
               id="input-4"
               v-model="user.data.userExerciseCareer"
@@ -49,8 +73,12 @@
             ></b-form-input>
           </b-form-group>
 
-
-          <b-form-group label="연령" label-for="input-5">
+          <b-form-group
+            label="연령"
+            label-for="input-5"
+            label-cols-sm="2"
+            label-align-sm="right"
+          >
             <b-form-input
               id="input-5"
               v-model="user.data.userAge"
@@ -59,14 +87,21 @@
             ></b-form-input>
           </b-form-group>
 
-          <b-form-radio-group
-            class="pt-2 text-align-left"
-            :options="['Male', 'Female']"
-            :aria-describedby="ariaDescribedby"
-            v-model="user.data.gender"
-            readonly
-          ></b-form-radio-group>
-        
+          <b-form-group
+            label="성별:"
+            label-cols-sm="2"
+            label-align-sm="right"
+            class="mb-0"
+            v-slot="{ ariaDescribedby }"
+          >
+            <b-form-radio-group
+              class="pt-2 text-align-left"
+              :options="['Male', 'Female']"
+              :aria-describedby="ariaDescribedby"
+              v-model="user.gender"
+            ></b-form-radio-group>
+          </b-form-group>
+
           <div class="text-align-center">
             <b-button @click="moveUserUpdate">수정</b-button>
           </div>

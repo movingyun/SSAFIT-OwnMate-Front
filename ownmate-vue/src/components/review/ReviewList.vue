@@ -3,7 +3,6 @@
     <!-- 비디오 목록에서 비디오를 누르고 들어가면 리뷰목록으로 들어가게한다..? -->
     <!-- 리뷰 목록들을 관리할 게시판을 따로만든다? -->
     <div class="text-align-left">
-    <h2>리뷰</h2>
     </div>
     <hr />
     <b-table-simple hover responsive class="text-center">
