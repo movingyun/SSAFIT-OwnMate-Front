@@ -25,7 +25,7 @@
           >
             <b-form-input
               id="input-1"
-              v-model="user.data.userId"
+              v-model="user.userId"
               trim
               readonly
             ></b-form-input>
@@ -39,7 +39,7 @@
           >
             <b-form-input
               id="input-2"
-              v-model="user.data.userName"
+              v-model="user.userName"
               trim
               readonly
             ></b-form-input>
@@ -53,7 +53,7 @@
           >
             <b-form-input
               id="input-3"
-              v-model="user.data.userGym"
+              v-model="user.userGym"
               trim
               readonly
             ></b-form-input>
@@ -67,7 +67,7 @@
           >
             <b-form-input
               id="input-4"
-              v-model="user.data.userExerciseCareer"
+              v-model="user.userExerciseCareer"
               trim
               readonly
             ></b-form-input>
@@ -81,7 +81,7 @@
           >
             <b-form-input
               id="input-5"
-              v-model="user.data.userAge"
+              v-model="user.userAge"
               trim
               readonly
             ></b-form-input>

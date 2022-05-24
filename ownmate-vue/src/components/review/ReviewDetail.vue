@@ -30,7 +30,7 @@
         <b-form-input
           id="input-2"
           trim
-          :value="review.reviewWriter"
+          :value="this.user.userName"
           disabled
         ></b-form-input>
       </b-form-group>
@@ -64,6 +64,8 @@ export default {
   name: "ReviewDetail",
   computed: {
     ...mapState(["review"]),
+    ...mapState(["user"]),
+    
   },
   data() {
     return {

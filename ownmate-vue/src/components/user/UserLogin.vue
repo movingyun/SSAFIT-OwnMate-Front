@@ -45,7 +45,7 @@
               <b-button @click="login">Login</b-button>
             </div>
             <a
-              ><h6 class="text-align-right" @click="moveJoin">
+              ><h6 class="text-align-right" @click="moveJoin" style="cursor:pointer">
                 아이디가 없으신가요?
               </h6></a
             >

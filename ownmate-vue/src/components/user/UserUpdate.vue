@@ -3,6 +3,7 @@
     <br />
     <br />
     <br />
+    {{user}}
     <div class="text-align-center">
       <b-card bg-variant="light">
         <img src="@/assets/login.png" />
@@ -24,7 +25,7 @@
           >
             <b-form-input
               id="input-1"
-              v-model="user.data.userId"
+              v-model="user.userId"
               trim
               readonly
             ></b-form-input>
@@ -38,7 +39,7 @@
           >
             <b-form-input
               id="input-2"
-              v-model="user.data.userName"
+              v-model="user.userName"
               trim
             ></b-form-input>
           </b-form-group>
@@ -51,7 +52,7 @@
           >
             <b-form-input
               id="input-3"
-              v-model="user.data.userGym"
+              v-model="user.userGym"
               trim
             ></b-form-input>
           </b-form-group>
@@ -64,7 +65,7 @@
           >
             <b-form-input
               id="input-4"
-              v-model="user.data.userExerciseCareer"
+              v-model="user.userExerciseCareer"
               trim
             ></b-form-input>
           </b-form-group>
@@ -77,7 +78,7 @@
           >
             <b-form-input
               id="input-5"
-              v-model="user.data.userAge"
+              v-model="user.userAge"
               trim
             ></b-form-input>
           </b-form-group>
@@ -117,6 +118,7 @@ export default {
   methods: {
     updateUser() {
       let updateUser = {
+        userId : this.user.userId,
         userName: this.user.userName,
         userGym: this.user.userGym,
         userAge: this.user.userAge,

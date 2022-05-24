@@ -204,9 +204,10 @@ export default new Vuex.Store({
         params: user
       }).then(() => {
         commit('UPDATE_USER', user)
-        router.push(`/user/${user.userId}`)
+        router.push(`/`)
       }).catch((err) => {
         console.log(err)
+        router.push(`/user/${user.userId}`)
       })
     },
     getUser({ commit }, user) {
@@ -215,7 +216,7 @@ export default new Vuex.Store({
         url: API_URL,
         method: 'GET',
       }).then((res) => {
-        commit('GET_USER', res)
+        commit('GET_USER', res.data)
       }).catch((err) => {
         console.log(err)
       })
