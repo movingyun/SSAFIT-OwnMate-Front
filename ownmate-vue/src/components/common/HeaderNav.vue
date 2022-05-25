@@ -56,11 +56,7 @@ computed: {
     logout() {
       sessionStorage.clear();
       this.$store.dispatch("userLogout");
-    },
-  },
-  watch: {
-    sessionStorage : function () {
-      this.isLogin = sessionStorage.getItem("access-token");
+      alert("로그아웃 되었습니다.")
     },
   },
 };

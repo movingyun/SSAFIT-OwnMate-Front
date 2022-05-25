@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="app">
     <header-nav></header-nav>
     <router-view/>
   </div>
@@ -16,5 +16,8 @@
 </script>
 
 <style>
-
+@import url('https://fonts.googleapis.com/css?family=Do+Hyeon:400');
+#app{
+font-family: 'Do Hyeon', sans-serif;
+}
 </style>
