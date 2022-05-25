@@ -9,7 +9,7 @@
         class="btn btn-secondary margin3"
         style="width: 150px; height: 50px"
       >
-        유저 검색🔍
+        유저 검색 🔍
       </button>
       <br />
       <br />
@@ -22,7 +22,7 @@
           v-model.lazy="keyword"
           @keyup.enter="usersearch"
         ></b-form-input>
-        <b-button size="sm" class="my-2 my-sm-0" @click="usersearch"
+        <b-button size="sm" class="my-2 my-sm-0" @click="searchUsers"
           >Search</b-button
         >
       </div>
@@ -42,9 +42,16 @@
             <b-td>{{ user.userId }}</b-td>
             <b-td>{{ user.userName }}</b-td>
             <b-td>{{ user.userAge }}</b-td>
-            <b-td>{{ user.userExerciseCareer}}</b-td>
+            <b-td>{{ user.userExerciseCareer }}</b-td>
             <b-td>{{ user.userGender }}</b-td>
-            <b-td><b-button variant="outline-primary" @click="addFollow">Follow</b-button></b-td>
+            <b-td
+              ><b-button
+                :name="user.userId"
+                variant="outline-primary"
+                @click="addFollower"
+                >Follow</b-button
+              ></b-td
+            >
           </b-tr>
         </b-tbody>
       </b-table-simple>
@@ -60,28 +67,34 @@
       </button>
       <br />
       <br />
-      <b-table-simple hover responsive class="text-center">
-        <b-thead>
-          <b-tr>
-            <b-th>ID</b-th>
-            <b-th>Name</b-th>
-            <b-th>Age</b-th>
-            <b-th>Exercise Career</b-th>
-            <b-th>Gender</b-th>
-            <b-th>Unfollow</b-th>
-          </b-tr>
-        </b-thead>
-        <b-tbody>
-         <b-tr v-for="user in users" :key="user.userId">
-            <b-td>{{ user.userId }}</b-td>
-            <b-td>{{ user.userName }}</b-td>
-            <b-td>{{ user.userAge }}</b-td>
-            <b-td>{{ user.userExerciseCareer}}</b-td>
-            <b-td>{{ user.userGender }}</b-td>
-            <b-td><b-button variant="outline-danger" @click="deleteFollow">Unfollow</b-button></b-td>
-          </b-tr>
-        </b-tbody>
-      </b-table-simple>
+      <div v-for="follower in followers" :key="follower.followerNo">
+        <div v-for="user in users" :key="user.userId">
+          <div v-if="follower.followerTargetId === user.userId">
+            <!-- 카드 -->
+            <div class="card h-200" style="width: 310px">
+              <div class="card-body">
+                <h5 class="videotitle">
+                  {{ user.userName }}
+                </h5>
+                <div class="videotext d-flex justify-content-between">
+                  <div>
+                    <div>ID : {{ user.userId }}</div>
+                    <div>AGE : {{ user.userAge }}</div>
+                    <div>Exercise Career : {{ user.userExerciseCareer }}</div>
+                    <div>Gender : {{ user.userGender }}</div>
+                  </div>
+                  <div>
+                    <span>
+                      <b-button :num="follower.followerNo" variant="outline-danger"
+                        @click="deleteFollower">Unfollow</b-button>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -92,28 +105,61 @@ export default {
   name: "FollowList",
   computed: {
     ...mapState(["users"]),
+    ...mapState(["followers"]),
   },
   created() {
-     const payload = {
-        keyword: this.keyword,
-      };
-      this.$store.dispatch("getUsers", payload);
+    const payload = {
+      keyword: this.keyword,
+    };
+    this.$store.dispatch("searchUsers", payload);
+    let userId = sessionStorage.getItem("userId");
+    this.$store.dispatch("getFollowers", userId);
   },
-  data(){
-    return{
-      keyword:"",
-    }
+  data() {
+    return {
+      keyword: "",
+    };
   },
   methods: {
-    usersearch() {
+    searchUsers() {
       const payload = {
         keyword: this.keyword,
       };
-      this.$store.dispatch("getUsers", payload);
+      this.$store.dispatch("searchUsers", payload);
+    },
+    addFollower() {
+      alert("팔로우 목록에 추가되었습니다.");
+      let param = {
+        followerNo: 0,
+        follwerUserId: sessionStorage.getItem("userId"),
+        follwerTargetId: event.target.getAttribute("name"),
+      };
+      this.$store.dispatch("addFollower", param);
     },
   },
 };
 </script>
 
-<style>
+<style scoped>
+.left-padding {
+  padding-left: 45px;
+}
+.videotitle {
+  font-size: 15px;
+}
+.videotext {
+  font-size: 13px;
+  padding: 0px;
+}
+.text-align-center {
+  text-align: center;
+}
+.margin3 {
+  margin: 3%;
+}
+.marginb3 {
+  margin-bottom: 3%;
+  margin-left: 3%;
+  margin-right: 3%;
+}
 </style>

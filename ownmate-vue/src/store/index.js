@@ -12,7 +12,7 @@ export default new Vuex.Store({
   state: {
     videos: [],
     video: {},
-    zzims:{},
+    zzims: {},
     reviews: [],
     review: {},
     videos3: [],
@@ -21,7 +21,8 @@ export default new Vuex.Store({
     user: {},
     likeReview: [],
     dislikeReview: [],
-    users:[],
+    users: [],
+    followers: [],
   },
   getters: {},
   mutations: {
@@ -72,8 +73,11 @@ export default new Vuex.Store({
     GET_ZZIM(state, payload) {
       state.zzims = payload;
     },
-    GET_USERS(state, payload){
+    SEARCH_USERS(state, payload) {
       state.users = payload;
+    },
+    GET_FOLLOWER(state, payload) {
+      state.followers = payload;
     },
   },
   actions: {
@@ -297,7 +301,7 @@ export default new Vuex.Store({
     },
     //유저 찜 얻어오기
     getZzim({ commit }) {
-      console.log('찜 가져와~')
+      console.log("찜 가져와~");
       const USER_ID = sessionStorage.getItem("userId");
       const API_URL = `${REST_API}/zzim/${USER_ID}`;
       axios({
@@ -314,38 +318,38 @@ export default new Vuex.Store({
     },
     //찜 목록 추가
     addZzim(context, zzim) {
-      context
+      context;
       const API_URL = `${REST_API}/zzim`;
       axios({
         url: API_URL,
         method: "POST",
-        params:zzim
+        params: zzim,
       })
         .then(() => {
-          console.log(zzim)
-          console.log("찜 완료")
+          console.log(zzim);
+          console.log("찜 완료");
         })
         .catch((err) => {
           console.log(err);
         });
     },
     deleteZzim(context, zzimNo) {
-      context
+      context;
       const API_URL = `${REST_API}/zzim/${zzimNo}`;
       axios({
         url: API_URL,
         method: "DELETE",
       })
         .then(() => {
-          console.log("찜 삭제완료")
-          context.dispatch("getZzim")
+          console.log("찜 삭제완료");
+          context.dispatch("getZzim");
         })
         .catch((err) => {
           console.log(err);
         });
     },
     //유저검색
-    getUsers({ commit }, payload) {
+    searchUsers({ commit }, payload) {
       const API_URL = `${REST_API}/user`;
       axios({
         url: API_URL,
@@ -355,7 +359,37 @@ export default new Vuex.Store({
         },
       })
         .then((res) => {
-          commit("GET_USERS", res.data);
+          commit("SEARCH_USERS", res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    addFollower(context, param) {
+      context
+      const API_URL = `${REST_API}/follower`;
+      axios({
+        url: API_URL,
+        method: "POST",
+        params: param
+      })
+        .then(() => {
+          console.log("팔로워 추가 완료");
+          context.dispatch("getFollowers", sessionStorage.getItem('userId'));
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    getFollowers({commit}, id) {
+      const API_URL = `${REST_API}/follower/${id}`;
+      axios({
+        url: API_URL,
+        method: "GET",
+      })
+        .then((res) => {
+          console.log("팔로워 가져와");
+          commit("GET_FOLLOWER", res.data);
         })
         .catch((err) => {
           console.log(err);
