@@ -23,6 +23,7 @@ export default new Vuex.Store({
     dislikeReview: [],
     users: [],
     followers: [],
+    allUsers:[],
   },
   getters: {},
   mutations: {
@@ -79,6 +80,9 @@ export default new Vuex.Store({
     GET_FOLLOWER(state, payload) {
       state.followers = payload;
     },
+    SEARCH_ALLUSERS(state, payload){
+      state.allUsers = payload;
+    }
   },
   actions: {
     getReviews({ commit }, payload) {
@@ -375,6 +379,7 @@ export default new Vuex.Store({
       })
         .then(() => {
           console.log("팔로워 추가 완료");
+          console.log(param)
           context.dispatch("getFollowers", sessionStorage.getItem('userId'));
         })
         .catch((err) => {
@@ -390,6 +395,21 @@ export default new Vuex.Store({
         .then((res) => {
           console.log("팔로워 가져와");
           commit("GET_FOLLOWER", res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    deleteFollowers(context, followerNo) {
+      context;
+      const API_URL = `${REST_API}/follow/${followerNo}`;
+      axios({
+        url: API_URL,
+        method: "DELETE",
+      })
+        .then(() => {
+          console.log("팔로우 삭제완료");
+          context.dispatch("getFollowers");
         })
         .catch((err) => {
           console.log(err);

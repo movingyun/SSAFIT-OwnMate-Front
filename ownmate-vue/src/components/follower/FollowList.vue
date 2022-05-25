@@ -17,10 +17,10 @@
         <b-form-input
           size="sm"
           class="mr-md-2"
-          placeholder="아이디를 입력해주세요."
+          placeholder="검색어를 입력해주세요."
           type="text"
           v-model.lazy="keyword"
-          @keyup.enter="usersearch"
+          @keyup.enter="searchUsers"
         ></b-form-input>
         <b-button size="sm" class="my-2 my-sm-0" @click="searchUsers"
           >Search</b-button
@@ -67,6 +67,7 @@
       </button>
       <br />
       <br />
+
       <div v-for="follower in followers" :key="follower.followerNo">
         <div v-for="user in users" :key="user.userId">
           <div v-if="follower.followerTargetId === user.userId">
@@ -105,13 +106,12 @@ export default {
   name: "FollowList",
   computed: {
     ...mapState(["users"]),
+    ...mapState(["allUsers"]),
     ...mapState(["followers"]),
+
   },
   created() {
-    const payload = {
-      keyword: this.keyword,
-    };
-    this.$store.dispatch("searchUsers", payload);
+    this.$store.dispatch("searchUsers");
     let userId = sessionStorage.getItem("userId");
     this.$store.dispatch("getFollowers", userId);
   },
@@ -135,6 +135,11 @@ export default {
         follwerTargetId: event.target.getAttribute("name"),
       };
       this.$store.dispatch("addFollower", param);
+    },
+    deleteFollower() {
+      alert("삭제되었습니다.");
+      let idx = event.target.getAttribute("num");
+      this.$store.dispatch("deleteFollower", idx);
     },
   },
 };
