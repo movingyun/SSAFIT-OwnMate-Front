@@ -80,7 +80,7 @@ const routes = [
   },
   {
     path: "/follow",
-    name: "folloList",
+    name: "followList",
     component: FollowList,
   },
   {

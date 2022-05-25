@@ -82,7 +82,10 @@ export default new Vuex.Store({
     },
     SEARCH_ALLUSERS(state, payload){
       state.allUsers = payload;
-    }
+    },
+    ADD_FOLLOWER(state, payload) {
+      state.followers.push(payload);
+    },
   },
   actions: {
     getReviews({ commit }, payload) {
@@ -354,15 +357,20 @@ export default new Vuex.Store({
     },
     //유저검색
     searchUsers({ commit }, payload) {
+      let params = null;
+      if (payload) {
+        params = payload;
+      }
       const API_URL = `${REST_API}/user`;
+      console.log(payload)
+      console.log(params)
       axios({
         url: API_URL,
         method: "GET",
-        params: {
-          keyword: payload.keyword,
-        },
+        params,
       })
         .then((res) => {
+          console.log(res)
           commit("SEARCH_USERS", res.data);
           if (this.state.allUsers.length === 0) {
             commit("SEARCH_ALLUSERS", res.data);
@@ -372,21 +380,22 @@ export default new Vuex.Store({
           console.log(err);
         });
     },
-    addFollower(context, param) {
-      context
+    addFollower({commit}, param) {
       const API_URL = `${REST_API}/follower`;
+      console.log(param)
       axios({
         url: API_URL,
         method: "POST",
         params: param
       })
         .then(() => {
+          commit("ADD_FOLLOWER", param);
           console.log("팔로워 추가 완료");
           console.log(param)
-          context.dispatch("getFollowers", sessionStorage.getItem('userId'));
         })
         .catch((err) => {
-          console.log(err);
+          err
+          alert("이미 팔로우한 회원입니다")
         });
     },
     getFollowers({commit}, id) {
@@ -397,22 +406,21 @@ export default new Vuex.Store({
       })
         .then((res) => {
           console.log("팔로워 가져와");
+          console.log(res.data)
           commit("GET_FOLLOWER", res.data);
         })
         .catch((err) => {
           console.log(err);
         });
     },
-    deleteFollowers(context, followerNo) {
-      context;
-      const API_URL = `${REST_API}/follow/${followerNo}`;
+    deleteFollower(context, followerNo) {
+      const API_URL = `${REST_API}/follower/${followerNo}`;
       axios({
         url: API_URL,
         method: "DELETE",
       })
         .then(() => {
-          console.log("팔로우 삭제완료");
-          context.dispatch("getFollowers");
+          context.dispatch("getFollowers",sessionStorage.getItem('userId'))
         })
         .catch((err) => {
           console.log(err);

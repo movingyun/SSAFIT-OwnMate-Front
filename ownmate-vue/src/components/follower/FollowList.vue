@@ -26,35 +26,37 @@
           >Search</b-button
         >
       </div>
-      <b-table-simple hover responsive class="text-center">
-        <b-thead>
-          <b-tr>
-            <b-th>ID</b-th>
-            <b-th>Name</b-th>
-            <b-th>Age</b-th>
-            <b-th>Exercise Career</b-th>
-            <b-th>Gender</b-th>
-            <b-th>Follow</b-th>
-          </b-tr>
-        </b-thead>
-        <b-tbody>
-          <b-tr v-for="user in users" :key="user.userId">
-            <b-td>{{ user.userId }}</b-td>
-            <b-td>{{ user.userName }}</b-td>
-            <b-td>{{ user.userAge }}</b-td>
-            <b-td>{{ user.userExerciseCareer }}</b-td>
-            <b-td>{{ user.userGender }}</b-td>
-            <b-td
-              ><b-button
-                :name="user.userId"
-                variant="outline-primary"
-                @click="addFollower"
-                >Follow</b-button
-              ></b-td
-            >
-          </b-tr>
-        </b-tbody>
-      </b-table-simple>
+      <div v-if="this.users.length != this.allUsers.length">
+        <b-table-simple hover responsive class="text-center">
+          <b-thead>
+            <b-tr>
+              <b-th>ID</b-th>
+              <b-th>Name</b-th>
+              <b-th>Age</b-th>
+              <b-th>Exercise Career</b-th>
+              <b-th>Gender</b-th>
+              <b-th>Follow</b-th>
+            </b-tr>
+          </b-thead>
+          <b-tbody>
+            <b-tr v-for="user in users" :key="user.userId">
+              <b-td>{{ user.userId }}</b-td>
+              <b-td>{{ user.userName }}</b-td>
+              <b-td>{{ user.userAge }}</b-td>
+              <b-td>{{ user.userExerciseCareer }}</b-td>
+              <b-td>{{ user.userGender }}</b-td>
+              <b-td
+                ><b-button
+                  :name="user.userId"
+                  variant="outline-primary"
+                  @click="addFollower"
+                  >Follow</b-button
+                ></b-td
+              >
+            </b-tr>
+          </b-tbody>
+        </b-table-simple>
+      </div>
 
       <br />
       <br />
@@ -67,18 +69,17 @@
       </button>
       <br />
       <br />
-      {{followers}}
-      
-      <div v-for="follower in followers" :key="follower.followerNo">
-        <div v-for="user in allUsers" :key="user.userId">
-          <div v-if="follower.followerTargetId === user.userId">
-            <!-- 카드 -->
-            <div class="card h-200" style="width: 310px">
-              <div class="card-body">
-                <h5 class="videotitle">
-                  {{ user.userName }}
-                </h5>
-                <div class="videotext d-flex justify-content-between">
+      <div class="videotext d-flex justify-content-between flex-wrap">
+        <div v-for="follower in followers" :key="follower.followerNo">
+          <div v-for="user in allUsers" :key="user.userId">
+            <div v-if="follower.followerTargetId === user.userId">
+              <!-- 카드 -->
+              <div class="card h-200" style="width: 310px">
+                <div class="card-body">
+                  <h5 class="videotitle">
+                    {{ user.userName }}
+                  </h5>
+
                   <div>
                     <div>ID : {{ user.userId }}</div>
                     <div>AGE : {{ user.userAge }}</div>
@@ -87,8 +88,12 @@
                   </div>
                   <div>
                     <span>
-                      <b-button :num="follower.followerNo" variant="outline-danger"
-                        @click="deleteFollower">Unfollow</b-button>
+                      <b-button
+                        :num="follower.followerNo"
+                        variant="outline-danger"
+                        @click="deleteFollower"
+                        >Unfollow</b-button
+                      >
                     </span>
                   </div>
                 </div>
@@ -109,7 +114,6 @@ export default {
     ...mapState(["users"]),
     ...mapState(["allUsers"]),
     ...mapState(["followers"]),
-
   },
   created() {
     this.$store.dispatch("searchUsers");
@@ -132,8 +136,8 @@ export default {
       alert("팔로우 목록에 추가되었습니다.");
       let param = {
         followerNo: 0,
-        follwerUserId: sessionStorage.getItem("userId"),
-        follwerTargetId: event.target.getAttribute("name"),
+        followerUserId: sessionStorage.getItem("userId"),
+        followerTargetId: event.target.getAttribute("name"),
       };
       this.$store.dispatch("addFollower", param);
     },
