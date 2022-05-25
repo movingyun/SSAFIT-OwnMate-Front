@@ -32,7 +32,7 @@
             <b-nav-item :to="{ name: 'home' }">홈</b-nav-item>
             <b-nav-item href="#">탐색</b-nav-item>
             <b-nav-item href="#">팔로우 목록</b-nav-item>
-            <b-nav-item href="#">찜한 영상</b-nav-item>
+            <b-nav-item :to="`/zzim`">찜한 영상</b-nav-item>
             <b-nav-item :to="`/user/${user.userId}`">내 정보 관리</b-nav-item>
           </b-navbar-nav>
         </b-collapse>

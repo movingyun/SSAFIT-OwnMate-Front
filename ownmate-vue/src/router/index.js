@@ -2,6 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import HomeView from "@/views/HomeView.vue";
 import VideoView from "@/views/VideoView.vue";
+import ZzimView from "@/views/ZzimView.vue"
 
 import ReviewList from "@/components/review/ReviewList";
 import ReviewCreate from "@/components/review/ReviewCreate";
@@ -82,6 +83,11 @@ const routes = [
     name: "folloList",
     component: FollowList,
   },
+  {
+    path: "/zzim",
+    name: "zzimList",
+    component:ZzimView,
+  }
 ];
 
 const router = new VueRouter({
