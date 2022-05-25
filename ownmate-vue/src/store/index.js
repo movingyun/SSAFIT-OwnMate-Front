@@ -364,6 +364,9 @@ export default new Vuex.Store({
       })
         .then((res) => {
           commit("SEARCH_USERS", res.data);
+          if (this.state.allUsers.length === 0) {
+            commit("SEARCH_ALLUSERS", res.data);
+          }
         })
         .catch((err) => {
           console.log(err);

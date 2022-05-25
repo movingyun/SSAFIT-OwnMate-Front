@@ -67,9 +67,10 @@
       </button>
       <br />
       <br />
-
+      {{followers}}
+      
       <div v-for="follower in followers" :key="follower.followerNo">
-        <div v-for="user in users" :key="user.userId">
+        <div v-for="user in allUsers" :key="user.userId">
           <div v-if="follower.followerTargetId === user.userId">
             <!-- 카드 -->
             <div class="card h-200" style="width: 310px">
