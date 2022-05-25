@@ -30,7 +30,7 @@
           label-cols-sm="2"
           label-align-sm="right"
         >
-          <b-form-input type="text" id="pw" v-model="user.pw"></b-form-input>
+          <b-form-input type="password" id="pw" v-model="user.pw"></b-form-input>
         </b-form-group>
         <b-form-group
           label="패스워드 확인:"
@@ -39,7 +39,7 @@
           label-align-sm="right"
         >
           <b-form-input
-            type="text"
+            type="password"
             id="pwCheck"
             v-model="user.pwCheck"
           ></b-form-input>

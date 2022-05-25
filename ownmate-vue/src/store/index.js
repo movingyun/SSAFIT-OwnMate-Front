@@ -21,6 +21,7 @@ export default new Vuex.Store({
     user: {},
     likeReview: [],
     dislikeReview: [],
+    users:[],
   },
   getters: {},
   mutations: {
@@ -70,6 +71,9 @@ export default new Vuex.Store({
     },
     GET_ZZIM(state, payload) {
       state.zzims = payload;
+    },
+    GET_USERS(state, payload){
+      state.users = payload;
     },
   },
   actions: {
@@ -335,6 +339,23 @@ export default new Vuex.Store({
         .then(() => {
           console.log("찜 삭제완료")
           context.dispatch("getZzim")
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    //유저검색
+    getUsers({ commit }, payload) {
+      const API_URL = `${REST_API}/user`;
+      axios({
+        url: API_URL,
+        method: "GET",
+        params: {
+          keyword: payload.keyword,
+        },
+      })
+        .then((res) => {
+          commit("GET_USERS", res.data);
         })
         .catch((err) => {
           console.log(err);

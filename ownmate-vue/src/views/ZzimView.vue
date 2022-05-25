@@ -3,9 +3,7 @@
     <br />
     <br />
     <br />
-    <h2>찜리스트</h2>
 
-    <!-- 조회수 순으로 비디오 뽑아주기 -->
     <button
       type="button"
       class="btn btn-secondary margin3"

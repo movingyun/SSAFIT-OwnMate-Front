@@ -35,14 +35,15 @@
               label-align-sm="right"
             >
               <b-form-input
-                type="text"
+                type="password"
                 id="pw"
                 v-model="user.userPw"
+                @keyup.enter="login"
               ></b-form-input>
             </b-form-group>
 
             <div class="text-align-center">
-              <b-button @click="login">Login</b-button>
+              <b-button @click="login" >Login</b-button>
             </div>
             <a
               ><h6 class="text-align-right" @click="moveJoin" style="cursor:pointer">
