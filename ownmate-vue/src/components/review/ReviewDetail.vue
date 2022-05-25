@@ -58,11 +58,17 @@
           ></span
         >
         <span class="margin3"
-          ><b-button variant="outline-danger" @click="deleteReview"
+          ><b-button variant="outline-primary" @click="deleteReview"
             >삭제</b-button
           ></span
         >
       </div>
+        <div class="margin3 goList"
+          ><b-button variant="outline-primary " @click="goBack"
+            >&nbsp;&nbsp;&nbsp;&nbsp;목록으로&nbsp;&nbsp;&nbsp;&nbsp;</b-button
+          ></div
+        >
+        
     </div>
   </div>
 </template>
@@ -111,6 +117,9 @@ export default {
     countDislike() {
       this.$store.dispatch("countDislike", this.review.reviewNo);
     },
+    goBack() {
+      this.$router.push(`/video/${this.review.reviewVideoId}`);
+    },
   },
 };
 </script>
@@ -126,6 +135,8 @@ export default {
 .text-align-right {
   border: 0;
   background-color: rgba(0, 0, 0, 0);
+}.goList {
+  text-align: center;
 }
 </style>
 ;
