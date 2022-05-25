@@ -12,6 +12,7 @@ export default new Vuex.Store({
   state: {
     videos: [],
     video: {},
+    zzims:{},
     reviews: [],
     review: {},
     videos3: [],
@@ -63,9 +64,12 @@ export default new Vuex.Store({
       state.review.reviewLikeCnt += 1;
       state.likeReview.push(payload);
     },
-    COUNT_DISLIKE(state,payload) {
+    COUNT_DISLIKE(state, payload) {
       state.review.reviewDislikeCnt += 1;
       state.dislikeReview.push(payload);
+    },
+    GET_ZZIM(state, payload) {
+      state.zzims = payload;
     },
   },
   actions: {
@@ -280,12 +284,61 @@ export default new Vuex.Store({
           method: "GET",
         })
           .then(() => {
-            commit("COUNT_DISLIKE",reviewNo);
+            commit("COUNT_DISLIKE", reviewNo);
           })
           .catch((err) => {
             console.log(err);
           });
       }
+    },
+    //유저 찜 얻어오기
+    getZzim({ commit }) {
+      console.log('찜 가져와~')
+      const USER_ID = sessionStorage.getItem("userId");
+      const API_URL = `${REST_API}/zzim/${USER_ID}`;
+      axios({
+        url: API_URL,
+        method: "GET",
+      })
+        .then((res) => {
+          console.log(res.data);
+          commit("GET_ZZIM", res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    //찜 목록 추가
+    addZzim(context, zzim) {
+      context
+      const API_URL = `${REST_API}/zzim`;
+      axios({
+        url: API_URL,
+        method: "POST",
+        params:zzim
+      })
+        .then(() => {
+          console.log(zzim)
+          console.log("찜 완료")
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    deleteZzim(context, zzimNo) {
+      context
+      const API_URL = `${REST_API}/zzim/${zzimNo}`;
+      axios({
+        url: API_URL,
+        method: "DELETE",
+      })
+        .then(() => {
+          console.log("찜 삭제완료")
+          context.dispatch("getZzim")
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
   },
   modules: {},

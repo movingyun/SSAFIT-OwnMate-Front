@@ -15,8 +15,8 @@ import UserLogin from "@/components/user/UserLogin";
 import UserJoin from "@/components/user/UserJoin";
 import UserMyPage from "@/components/user/UserMyPage";
 import UserUpdate from "@/components/user/UserUpdate";
-
 import FollowList from "@/components/follower/FollowList";
+
 
 Vue.use(VueRouter);
 
